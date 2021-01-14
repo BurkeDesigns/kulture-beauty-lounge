@@ -1,0 +1,217 @@
+/*--- Forms Elements: inputs, dropdowns, checkbox, radio, toggle, etc... ---*/
+/*[#{$attr}~=input][type=text],*/
+[#{$attr}~=input],
+[#{$attr}|=input]{
+    --display:grid;
+    grid-auto-flow:row;
+    grid-gap:0px;
+}
+
+
+[#{$attr}|=input]:not([#{$attr}*=label]) > *[#{$attr}~=label],
+[#{$attr}|=input]:not([#{$attr}*=error]) > *[#{$attr}~=error],
+[#{$attr}|=input]:not([#{$attr}*=required]) > *[#{$attr}~=required] {
+    --display:none;
+}
+
+[#{$attr}*='input-list'] input[type=text],
+[#{$attr}*='input-list'] input[type=password]{
+    --width:100%;
+    --height: 35px;
+    --padding: 0px;
+    --border-radius: 0px;
+    --display: flex;
+    --transition: 0.2s;
+    --color:var(--color-black);
+    --hover-color:black;
+
+    --border-bottom: 1px solid var(--color-25);
+    --hover-border-bottom: 1px solid var(--color-sky);
+    --pressed-border-bottom: 1px solid var(--color-sky);
+    align-items: center;
+    min-width:100px;
+}
+[#{$attr}*='input-list'] textarea{
+    --width:100%;
+    --height: 250px;
+    --padding: 10px;
+    --border-radius: 0px;
+    --display: flex;
+    --transition: 0.2s;
+    --color:var(--color-black);
+    --hover-color:black;
+
+    --border: 1px solid var(--color-25);
+    --hover-border: 1px solid var(--color-sky);
+    --pressed-border: 1px solid var(--color-sky);
+    min-width:150px;
+}
+[#{$attr}*='input-error'] textarea{
+    --border: 1px solid var(--color-dusk);
+    --hover-border: 1px solid var(--color-dusk);
+    --pressed-border: 1px solid var(--color-dusk);
+}
+[#{$attr}*='input-error'] input[type=text],
+[#{$attr}*='input-error'] input[type=password]{
+    --border-bottom: 1px solid var(--color-dusk);
+    --hover-border-bottom: 1px solid var(--color-dusk);
+    --pressed-border-bottom: 1px solid var(--color-dusk);
+}
+
+[#{$attr}*='input-list']{
+    --display:grid;
+    --flow:row;
+    grid-gap: var(--gap, 5px);
+    grid-auto-flow: var(--flow);
+}
+[#{$attr}*='input-list'] label:not([#{$attr}~=select]):not([#{$attr}|=input]){
+    cursor: pointer;
+    display:grid;
+    grid-auto-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+    grid-gap:var(--space-xxxsm);
+    user-select: none;
+}
+[#{$attr}~=select]{
+    --height:35px;
+    --border-bottom: 1px solid var(--color-25);
+    --hover-border-bottom: 1px solid var(--color-sky);
+    --color: var(--color-black);
+    --hover-color: black;
+    --pressed-color: var(--color-black);
+    overflow: hidden;
+    min-width:150px;
+}
+[#{$attr}~=select] > select{
+    border:0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position:absolute;
+    padding-right: 30px;
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items: center;
+    z-index:2;
+    background-color:transparent;
+    font-size:16px;
+}
+[#{$attr}*='input-list'] select + i{
+    position:absolute;
+    right:0;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:1;
+    -webkit-text-fill-color: currentColor;
+}
+[#{$attr}*='input-list'] select + i::after{
+    content: 'keyboard_arrow_down';
+    color:var(--color-40);
+    --color:var(--color-40);
+}
+[#{$attr}*='input-list'] input[type=radio],
+[#{$attr}*='input-list'] input[type=checkbox]{
+    display: none;
+}
+[#{$attr}*='input-list'] input[type=radio] + i::after{
+    content:'radio_button_unchecked';
+}
+[#{$attr}*='input-list'] input[type=radio]:checked + i::after{
+    content:'radio_button_checked';
+}
+[#{$attr}*='input-list'] input[type=checkbox] + i::after{
+    content:var(--control-content, 'check_box_outline_blank');
+}
+[#{$attr}*='input-list'] input[type=checkbox]:checked + i::after{
+    content:var(--control-content, 'check_box');
+}
+
+[#{$attr}*='input-list-circle'] input[type=checkbox] + i::after{
+    --control-content: 'radio_button_unchecked';
+}
+[#{$attr}*='input-list-circle'] input[type=checkbox]:checked + i::after{
+    --control-content: 'check_circle';
+}
+[#{$attr}*='input-list-circle'] input[type=checkbox]:hover + i::after{
+    --control-content:  'check_circle_outline';
+}
+
+[#{$attr}*='input-list'] input[type=checkbox] + i,
+[#{$attr}*='input-list'] input[type=radio] + i{
+    --color:var(--color-25);
+    /* color:var(--color-sky); */
+   -webkit-text-fill-color: var(--color);
+   font-size: 18px;
+}
+[#{$attr}*='input-list-circle'] input[type=checkbox] + i{
+   font-size: 30px;
+}
+
+[#{$attr}*='input-list'] input[type=checkbox]:checked + i,
+[#{$attr}*='input-list'] input[type=radio]:checked + i{
+    --color:var(--color-sky);
+    /* color:var(--color-sky); */
+   -webkit-text-fill-color: var(--color);
+}
+[#{$attr}*='input-list'] input[type=checkbox]:hover + i,
+[#{$attr}*='input-list'] input[type=radio]:hover + i{
+    --color:var(--color-sky);
+    /* color:var(--color-sky); */
+   -webkit-text-fill-color: var(--color);
+}
+
+[#{$attr}*='input-list'] [#{$attr}~=label]{
+    --color:var(--color-65);
+}
+
+[#{$attr}~=row]{
+    --flow: row;
+}
+[#{$attr}~=column]{
+    --flow: column;
+    justify-content: flex-start;
+}
+
+
+/* Toggle */
+[#{$attr}~=toggle],
+[#{$attr}|=toggle]{
+    --height: 30px;
+    --gap:5px;
+    --circle-size: calc(var(--height) - (var(--gap) * 2));
+    --padding: 0 var(--height);
+    border-radius:100px;
+    --color:white;
+    --bg-color:rgba(0,0,0,0.35);
+    --display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    text-transform:uppercase;
+    font-size:12px;
+    cursor:pointer;
+    transition:0.3s ease;
+    user-select:none;
+  }
+  [#{$attr}~=toggle]:after,
+  [#{$attr}|=toggle]:after{
+    content:'';
+    width:var(--circle-size);
+    height:var(--circle-size);
+    margin:var(--gap);
+    background-color:#fff;
+    border-radius:100%;
+    transition:0.3s ease;
+    left:0;
+    top:0;
+    position:absolute;
+    /* filter:drop-shadow(0 3px 6px rgba(0,0,0,0.2)); */
+  }
+  [#{$attr}|=toggle][#{$attr}*=active]{
+    background-color:#0068ff;
+  }
+  [#{$attr}|=toggle][#{$attr}*=active]:after{
+    left:calc(100% - (var(--height))) !important;
+  }

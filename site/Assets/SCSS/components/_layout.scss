@@ -1,0 +1,111 @@
+/*----- Core Layout Styles -----*/
+[#{$attr}~=layout],
+[#{$attr}|=layout] {
+	--layout-columns: [header-start aside footer-start] 250px [main] 1fr [section] 200px [header-end footer-end];
+	--layout-rows: [header] minmax(80px, max-content) [aside main section] 1fr [footer] minmax(80px, max-content);
+    --display: grid;
+    --width: 100%;
+    --bg-color: transparent;
+    grid-template-columns: var(--layout-columns);
+    grid-template-rows: var(--layout-rows);
+    min-height: 100vh;
+}
+
+/*--- Layout States ---*/
+[#{$attr}|=layout][#{$attr}*=fixed]{
+    &{
+        max-height:100vh;
+    }
+    & > [#{$attr}~=main],
+    & > [#{$attr}~=section],
+    & > [#{$attr}~=aside]{
+        overflow:auto;
+    }
+}
+
+/*--- Website Layouts ---*/
+[#{$attr}~="layout-hmf"]{
+    --layout-columns: [header main footer] 1fr;
+	--layout-rows: [header] minmax(80px, max-content) [main] 1fr [footer] minmax(80px, max-content);
+}
+[#{$attr}~="layout-hm"]{
+    --layout-columns: [header main] 1fr;
+	--layout-rows: [header] minmax(128px, max-content) [main] 1fr;
+}
+
+/*--- Application Layouts ---*/
+[#{$attr}~="layout-am"]{
+    --layout-columns: [aside] minmax(50px, max-content) [main] 1fr;
+	--layout-rows: [aside main] 1fr;
+}
+[#{$attr}~="layout-asm"]{
+    --layout-columns: [aside] minmax(50px, max-content) [section] max-content [main] 1fr;
+	--layout-rows: [aside section main] 1fr;
+}
+[#{$attr}~="layout-ams"]{
+    --layout-columns: [aside] max-content [main] 1fr [section] max-content;
+	--layout-rows: [aside main section] 1fr;
+}
+[#{$attr}~="layout-aham"]{
+    --layout-columns: [aside] max-content [header main footer] 1fr;
+	--layout-rows: [aside-start header] minmax(66px, max-content) [main] 1fr [footer] minmax(80px, max-content) [aside-end];
+}
+[#{$attr}~="layout-ahams"]{
+    --layout-columns: [aside] max-content [header-start main] 1fr [section] max-content [header-end];
+	--layout-rows: [header aside-start] minmax(66px, max-content) [main section] 1fr [aside-end];
+}
+[#{$attr}~="layout-ham"]{
+    --layout-columns: [header-start aside] 250px [main] 1fr [header-end];
+	--layout-rows: [header] minmax(80px, max-content) [aside main] 1fr;
+}
+[#{$attr}~="layout-ahms"]{}
+
+
+/*--- Layout Elements ---*/
+[#{$attr}~=layout] > [#{$attr}*=header],
+[#{$attr}|=layout] > [#{$attr}*=header]{
+    grid-area: header;
+    z-index:4;
+}
+
+[#{$attr}~=layout] > [#{$attr}*=aside],
+[#{$attr}|=layout] > [#{$attr}*=aside]{
+    grid-area: aside;
+    z-index:3;
+}
+
+[#{$attr}~=layout] > [#{$attr}*=section],
+[#{$attr}|=layout] > [#{$attr}*=section]{
+    grid-area: section;
+    z-index:3;
+}
+
+[#{$attr}~=layout] > [#{$attr}*=main],
+[#{$attr}|=layout] > [#{$attr}*=main]{
+    grid-area: main;
+    z-index:1;
+}
+
+[#{$attr}~=layout] > [#{$attr}*=footer],
+[#{$attr}|=layout] > [#{$attr}*=footer]{
+    grid-area: footer;
+    z-index:2;
+}
+
+[#{$attr}~=layout] > *,
+[#{$attr}|=layout] > *{
+    --height:auto;
+}
+
+/*--- Mobile Layouts ---*/
+@media (max-width:#{$mobile-width}){
+    [#{$attr}|=layout][#{$attr}*=fixed] {
+		max-height:unset;
+		overflow: unset;
+	}
+	[#{$attr}*="mobile-row"]{
+		--layout-columns: [header aside main section footer] 1fr;
+		--layout-rows: [header] minmax(80px, max-content) [aside] 100px [main] 1fr [section] 200px [footer] minmax(80px, max-content);
+	}
+	
+}

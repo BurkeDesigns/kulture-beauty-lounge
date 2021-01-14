@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#222">
+    <meta name="description" content="Description...">
+
+    <title>About | Kulture Beauty Lounge</title>
+
+    <link href="../Assets/SCSS/standard.scss" rel="stylesheet">
+    
+    <!-- Async Non-critical CSS for performance -->
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" media="print" onload="this.media='all'"> -->
+    <link rel="stylesheet" href="https://use.typekit.net/hls0qob.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+    <style>
+        body{
+            background-color:#151619;
+            background-image:url(../Assets/Img/background_tile.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+        .fade-enter-active, .fade-leave-active {
+            transition: opacity .5s;
+        }
+        .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+            opacity: 0;
+        }
+        .slideshow{
+            position: absolute;
+            opacity:0.5;
+            max-height: 100vh;
+            overflow: hidden;
+            padding:40px;
+            width:100%;
+            height:100%;
+        }
+        .slideshow img{
+            width:100%;
+            height:100%;
+            object-fit: cover;
+            object-position: center;
+            overflow:hidden;
+            border-radius:8px;
+            filter: blur(10px);
+        }
+        [el=main]{
+            justify-content: center;
+            display: grid;
+        }
+        input,
+        textarea{
+            background-color:transparent;
+            border: 0;
+            border-bottom:1px solid #fff;
+            padding:0;
+            padding-bottom:10px;
+            font-size:16px;
+            color:#fff;
+            font-family: futura-pt, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div id="app">
+        <div class="slideshow">
+            <!-- <img src="Assets/Img/hair.jpg" alt="hair"> -->
+            <img src="../Assets/Img/background.jpg" alt="picture">
+        </div>
+        <div el="layout-hm fixed">
+            <header el="header">
+                <div el="list-column" style="--gap:8px;justify-content:space-evenly;align-items:center;" class="nav-container">
+                    <div v-if="window.mobileWidth">
+                        <div el="list" class="mobile-nav">
+                            <a href="../about/index.html" class="nav-link active">about</a>
+                            <a href="../talent/index.html" class="nav-link">talent</a>
+                            <a href="../booking/index.html" class="nav-link">booking</a>
+                            <a href="../info/index.html" class="nav-link">info</a>
+                        </div>
+                        <span class="material-icons mobile-menu-icon" style="color:#fff;z-index:10;" @click="toggleMobileNav">menu</span>
+                    </div>
+                    <a href="../about/index.html" class="nav-link active" v-if="!window.mobileWidth">about</a>
+                    <a href="../talent/index.html" class="nav-link" v-if="!window.mobileWidth">talent</a>
+                    <a href="../index.html">
+                        <img src="../assets/img/logo/logo_white.svg" class="logo" alt="logo">
+                    </a>
+                    <a href="../booking/index.html" class="nav-link" v-if="!window.mobileWidth">booking</a>
+                    <a href="../info/index.html" class="nav-link" v-if="!window.mobileWidth">info</a>
+                </div>
+            </header>   
+            <main el="main">
+                <div el="list" style="--gap:16px;margin-top:60px;padding:30px;">
+                        <!-- <a href="docs.html" el="btn">Docs</a> -->
+                        <h3 el style="font-weight: 300;text-align: center;letter-spacing: 3.24px;font-size: 30px;">"It’s not a trend, it’s a Kulture."</h3>
+                        <p el style="--color:hsla(0,0%,100%,0.65);max-width:800px;line-height:1.5rem;">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis venenatis enim lectus, vitae tincidunt neque vehicula eu. Vestibulum scelerisque orci nisi, a efficitur purus gravida elementum. Morbi consequat augue non hendrerit vulputate. Ut euismod risus in libero bibendum, sed ultrices ipsum posuere. Praesent lacinia augue sagittis ex laoreet, ut feugiat quam condimentum. Nunc non enim feugiat, rutrum ex ut, scelerisque ipsum. 
+                        </p>
+                        <h3 el style="font-weight: 300;text-align: center;letter-spacing: 3.24px;font-size: 30px;margin-top:60px;">OUR PRODUCTS</h3>
+                        <p el style="--color:hsla(0,0%,100%,0.65);max-width:800px;line-height:1.5rem;">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis venenatis enim lectus, vitae tincidunt neque vehicula eu. Vestibulum scelerisque orci nisi, a efficitur purus gravida elementum. Morbi consequat augue non hendrerit vulputate. Ut euismod risus in libero bibendum, sed ultrices ipsum posuere. Praesent lacinia augue sagittis ex laoreet, ut feugiat quam condimentum. Nunc non enim feugiat, rutrum ex ut, scelerisque ipsum. 
+                        </p>
+                        
+                </div>
+            </main> 
+        </div>
+    </div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                window:{
+                    width:800,
+                    mobileWidth:true,
+                },
+                layout:{
+                    nav:{
+                        show:false,
+                    }
+                }
+            },
+            methods:{
+                toggleMobileNav(){
+                    var x = this;
+                    this.layout.nav.show = !this.layout.nav.show;
+                    if(x.layout.nav.show){
+                        gsap.to('.mobile-nav', 0.5,{
+                            width:'100%',
+                            opacity:1
+                        });
+                    }else{
+                        gsap.to('.mobile-nav', 0.5,{
+                            width:0,
+                            opacity:0
+                        });
+                    }
+                    
+                }
+            },
+            mounted(){
+                var x = this;
+                x.window.width = window.innerWidth;
+                if(x.window.width<=800){
+                    x.window.mobileWidth = true;
+                }else{
+                    x.window.mobileWidth = false;
+                }
+                window.addEventListener('resize', () => {
+                    x.window.width = window.innerWidth;
+                    if(x.window.width<=800){
+                        x.window.mobileWidth = true;
+                    }else{
+                        x.window.mobileWidth = false;
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

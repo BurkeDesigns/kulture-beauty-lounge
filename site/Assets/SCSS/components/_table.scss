@@ -1,0 +1,61 @@
+/* ----- Table ----- */
+[#{$attr}=table],
+[#{$attr}|=table] {
+	--control-border: 1px solid var(--color-25);
+  --border: var(--control-border);
+  border-collapse: collapse;
+  min-width: max-content;
+  --width:100%;
+  --display:table;
+
+}
+[#{$attr}=table] tr:first-child,
+[#{$attr}|=table] tr:first-child{
+	border-bottom:var(--control-border);
+}
+[#{$attr}=table] tr:not(:first-child):hover,
+[#{$attr}|=table] tr:not(:first-child):hover{
+    /* box-shadow: 0 0 0 1px var(--color-sky); */
+    outline:1px solid var(--color-sky);
+    outline-offset: -1px;
+}
+[#{$attr}=table] th,
+[#{$attr}|=table] th{
+    color:var(--color-65);
+    -webkit-text-fill-color: currentColor;
+	font-weight:var(--font-medium);
+    text-align: left;
+    white-space: nowrap;
+}
+[#{$attr}*=table] th,
+[#{$attr}*=table] td{
+	padding: 14px;
+}
+[#{$attr}*=table] td{
+    font-weight:300;
+    color:black;
+    -webkit-text-fill-color: currentColor;
+}
+.acr-td-icon{
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: flex-start;
+    grid-gap: var(--space-xxsm);
+}
+.acr-td-icon i{
+    color:var(--color-25);
+    -webkit-text-fill-color: currentColor;
+    font-size: 30px;
+    display:none;
+}
+[#{$attr}|=table][#{$attr}*=action] .active .acr-td-icon i{
+    color:var(--color-sky);
+}
+
+
+[#{$attr}|=table][#{$attr}*=action] i{
+    display: inline-flex;
+    height: 14px;
+    align-items: center;
+}

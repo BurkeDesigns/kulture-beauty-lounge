@@ -1,0 +1,55 @@
+/*--- Floating Modules: Popups, overlay menus ---*/
+[#{$attr}~=module],
+[#{$attr}|=module]{
+	--display:flex;
+	--width:100%;
+	--bg-color: var(--color-13);
+    min-height:100vh;
+    max-height:100vh;
+	position:fixed;
+	top:0;
+	left:0;
+	z-index:5;
+	justify-content:flex-end;
+	overflow-y:auto;
+}
+
+[#{$attr}~=module] > *,
+[#{$attr}|=module] > *{
+	max-width: 500px;
+	width:100%;
+	min-height: var(--control-min-height, 100vh);
+    --bg-color:white;
+    padding: var(--space-md);
+    position: relative;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.39));
+}
+
+[#{$attr}|=module]{
+	&[#{$attr}*=left]{
+		justify-content:flex-start;
+		right:unset;
+		left:0;
+	}
+	&[#{$attr}*=right]{
+		right:0;
+		left:auto;
+	}
+	&[#{$attr}*=center] {
+		justify-content: center;
+		align-items: baseline;
+		--bg-color: var(--color-65);
+		--control-min-height: 50px;
+		border-radius:var(--border-radius-3);
+		padding: 100px 0;
+		overflow: auto;
+		max-width:unset !important;
+		--width:100%;
+	}
+	&[#{$attr}*=fit]{
+		--width:100%;
+		max-width:500px;
+		filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.39));
+		z-index:6;
+	}
+}

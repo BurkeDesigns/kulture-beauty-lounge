@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#222">
+    <meta name="description" content="Description...">
+
+    <title>Talent | </title>
+
+    <link href="../Assets/SCSS/standard.scss" rel="stylesheet">
+    
+    <!-- Async Non-critical CSS for performance -->
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" media="print" onload="this.media='all'"> -->
+    <link rel="stylesheet" href="https://use.typekit.net/hls0qob.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+    <style>
+        body{
+            background-color:#151619;
+            background-image:url(../Assets/Img/background_tile.jpg);
+            background-repeat: no-repeat;
+            background-size: 100%;
+            background-position: top;
+        }
+        .fade-enter-active, .fade-leave-active {
+            transition: opacity .5s;
+        }
+        .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+            opacity: 0;
+        }
+        .slideshow{
+            position: absolute;
+            opacity:0.5;
+            max-height: 100vh;
+            overflow: hidden;
+            padding:40px;
+            width:100%;
+            height:100%;
+        }
+        .slideshow img{
+            width:100%;
+            height:100%;
+            object-fit: cover;
+            object-position: center;
+            overflow:hidden;
+            border-radius:8px;
+            filter: blur(10px);
+        }
+        [el=main]{
+            justify-content: center;
+            display: grid;
+            padding-bottom:100px;
+        }
+        
+        .service-grid{
+            display:grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap:40px;
+            padding:20px;
+            perspective: 3000px;
+        }
+        .service{
+            display:grid;
+            grid-template-columns: 260px 1fr;
+            align-items: center;
+        }
+        .service img{
+            height:296px;
+            width:296px;
+            display: block;
+            overflow: hidden;
+            border-radius: 5px;
+            object-fit: cover;
+            object-position: center;
+            transition:transform .25s linear;
+        }
+        .service img:hover,
+        .service .content:hover{
+            z-index: 2;
+            transform: scale(1.1);
+        }
+        .service .content{
+            background-color:#fff;
+            height:260px;
+            border-radius: 5px;
+            box-shadow:0 3px 10px rgba(0,0,0,0.3);
+            display: grid;
+            align-content: space-between;
+            overflow: hidden;
+            transition:transform .25s linear;
+            cursor: pointer;
+        }
+        .content .description{
+            font-size: 11px !important;
+            line-height:1rem;
+        }
+        @media (max-width: 1200px){
+            .service-grid{
+                display:grid;
+                grid-template-columns: 1fr;
+                grid-gap:40px;
+            }
+        }
+        @media (max-width: 630px){
+            .service {
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: 240px 1fr;
+            }
+            .service img{
+                height:260px;
+                width:100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div id="app">
+        <div class="slideshow">
+            <!-- <img src="Assets/Img/hair.jpg" alt="hair"> -->
+            <img src="../Assets/Img/background.jpg" alt="picture">
+        </div>
+        <div el="layout-hm">
+            <header el="header">
+                <div el="list-column" style="--gap:8px;justify-content:space-evenly;align-items:center;" class="nav-container">
+                    <div v-if="window.mobileWidth">
+                        <div el="list" class="mobile-nav">
+                            <a href="../about/index.html" class="nav-link">about</a>
+                            <a href="../talent/index.html" class="nav-link active">talent</a>
+                            <a href="../booking/index.html" class="nav-link">booking</a>
+                            <a href="../info/index.html" class="nav-link">info</a>
+                        </div>
+                        <span class="material-icons mobile-menu-icon" style="color:#fff;z-index:10;" @click="toggleMobileNav">menu</span>
+                    </div>
+                    <a href="../about/index.html" class="nav-link" v-if="!window.mobileWidth">about</a>
+                    <a href="../talent/index.html" class="nav-link active" v-if="!window.mobileWidth">talent</a>
+                    <a href="../index.html">
+                        <img src="../assets/img/logo/logo_white.svg" class="logo" alt="logo">
+                    </a>
+                    <a href="../booking/index.html" class="nav-link" v-if="!window.mobileWidth">booking</a>
+                    <a href="../info/index.html" class="nav-link" v-if="!window.mobileWidth">info</a>
+                </div>
+            </header>   
+            <main el="main">
+                <div el="list" style="--gap:16px; max-width: 1400px;" v-cloak>
+                        <h3 el style="font-weight: 300;text-align: center;letter-spacing: 3.24px;font-size: 18px;">CHOOSE ONE OF MY SPECIALTIES</h3>
+                        <div style="text-align: center;">
+                            <select style="padding:5px 10px;background-color:hsla(0,0%,100%,0.7);border-radius:100px;font-size:16px;width:200px;" v-model="services.category">
+                                <option value="all">View All</option>
+                                <option value="color services">Color Services</option>
+                                <option value="haircuts & styles">Haircuts & Styles</option>
+                            </select>
+                        </div>
+                        <div class="service-grid">
+                            <div class="service" v-for="item in filteredServices">
+                                <img :src="item.img" alt="service" lazyload>
+                                <div class="content">
+                                    <div el="list" style="padding:30px;">
+                                        <h4 el style="--color:black;">{{item.title}}</h4>
+                                        <p el class="description">{{item.description}}</p>
+                                    </div>
+                                    <div el="list-column-between" style="padding-left:30px;align-items: center;">
+                                        <p el>${{item.cost}} | {{item.length}} mins</p>
+                                        <div el="btn" style="--height:45px;">Select</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                </div>
+            </main> 
+        </div>
+    </div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js" integrity="sha512-90vH1Z83AJY9DmlWa8WkjkV79yfS2n2Oxhsi2dZbIv0nC4E6m5AbH8Nh156kkM7JePmqD6tcZsfad1ueoaovww==" crossorigin="anonymous"></script>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                window:{
+                    width:800,
+                    mobileWidth:true,
+                },
+                layout:{
+                    nav:{
+                        show:false,
+                    }
+                },
+                intersectionObserver: null,
+                services:{
+                    category:'all',
+                    list:[
+                    {
+                        title: 'CONSULTATION',
+                        category:'color services',
+                        cost:'0',
+                        length:'15',
+                        img:'../Assets/Img/services/consultation.jpg',
+                        description:'Come in and have a chat prior to scheduling your appointment to ensure I am the right stylist for you. Recommended for new clients (complimentary service)',
+                    },
+                    {
+                        title: 'HAIRCUT-EXISTING CLIENTS',
+                        category:'haircuts & styles',
+                        cost:'80',
+                        length:'60',
+                        img:'../Assets/Img/services/hair2.jpg',
+                        description:'Includes shampoo, cut, blowdry, and style',
+                    },
+                    {
+                        title: 'BLOWDRY/STYLE',
+                        category:'haircuts & styles',
+                        cost:'50',
+                        length:'45',
+                        img:'../Assets/Img/services/hair3.jpg',
+                        description:'Includes shampoo, blowdry and style',
+                    },
+                    {
+                        title: 'SINGLE COLOR/CUT-EXISTING CLIENTS',
+                        category:'color services',
+                        cost:'180',
+                        length:'120',
+                        img:'../Assets/Img/services/hair4.jpg',
+                        description:'Includes gray root coverage, an all over glaze to refresh ends, shampoo, conditioning treatment, cut, blowdry and style',
+                    },
+                    {
+                        title: 'SINGLE COLOR/STYLE-EXISTING CLIENTS',
+                        category:'color services',
+                        cost:'100',
+                        length:'90',
+                        img:'../Assets/Img/services/hair5.jpg',
+                        description:'Includes gray root coverage, an all over glaze to refresh ends, shampoo, conditioning treatment, blowdry and style',
+                    },
+                    {
+                        title: 'PARTIAL BALAYAGE/CUT/STYLE',
+                        category:'color services',
+                        cost:'345',
+                        length:'180',
+                        img:'../Assets/Img/services/hair6.jpg',
+                        description:'Balayage is a hairpainting technique that’s very natural & sunkissed looking, leaving your natural root color. Lightener can be painted on or placed in a foil for maximum lift. Includes lightening with B3 for protection (leaving out nape), shampoo, glaze, conditioning treatment, cut, blowdry, style',
+                    },
+                    {
+                        title: 'PARTIAL BALAYAGE/STYLE',
+                        category:'color services',
+                        cost:'275',
+                        length:'165',
+                        img:'../Assets/Img/services/hair7.jpg',
+                        description:'Balayage is a hairpainting technique that’s very natural & sunkissed looking, leaving your natural root color. Lightener can be painted on or placed in a foil for maximum lift. Includes lightening with B3 for protection (leaving out nape), shampoo, glaze, conditioning treatment, blowdry, style',
+                    },
+                    {
+                        title: 'FULL BALAYAGE/CUT/STYLE',
+                        category:'color services',
+                        cost:'375',
+                        length:'195',
+                        img:'../Assets/Img/services/hair8.jpg',
+                        description:'Balayage is a hairpainting technique that is very natural and sunkissed looking, leaving your natural root color. Lightener can be painted on or placed in a foil for maximum lift. Includes lightening (full head) with B3 for protection, shampoo, glaze, conditioning treatment, cut, blowdry and style.',
+                    },
+                    {
+                        title: 'FULL BALAYAGE/STYLE',
+                        category:'color services',
+                        cost:'305',
+                        length:'180',
+                        img:'../Assets/Img/services/hair9.jpg',
+                        description:'Balayage is a hairpainting technique that is very natural and sunkissed looking, leaving your natural root color. Lightener can be painted on or placed in a foil for maximum lift. Includes lightening (full head) with B3 for protection, shampoo, glaze, conditioning treatment, blowdry and style',
+                    },
+                    {
+                        title: 'FACE FRAMING BALAYAGE/CUT/STYLE',
+                        category:'color services',
+                        cost:'235',
+                        length:'120',
+                        img:'../Assets/Img/services/hair10.jpg',
+                        description:'Balayage is done just around the front and back hairlines and on the parting. Good for refreshing lightness in between bigger services or as an intro to balayage. Includes lightening with B3 for protection, shampoo, glaze, conditioning treatment, cut, blowdry and style',
+                    },
+                    {
+                        title: 'FACE FRAMING BALAYAGE/STYLE',
+                        category:'color services',
+                        cost:'165',
+                        length:'105',
+                        img:'../Assets/Img/services/hair11.jpg',
+                        description:'Balayage is done just around the front and back hairlines and on the parting. Good for refreshing lightness in between bigger services or as an intro to balayage. Includes lightening with B3 for protection, shampoo, glaze, conditioning treatment, blowdry and style',
+                    },
+                    {
+                        title: 'PARTIAL HIGHLIGHT/CUT/STYLE',
+                        category:'color services',
+                        cost:'270',
+                        length:'180',
+                        img:'../Assets/Img/services/hair12.jpg',
+                        description:'Foils are used to create lightness going all the way to the root. Service includes lightening with B3 for protection shampoo, glaze and/or root smudge for a soft regrowth, cut, blowdry and style. Partial includes everything but nape area',
+                    },
+                    {
+                        title: 'PARTIAL HIGHLIGHT/STYLE',
+                        category:'color services',
+                        cost:'200',
+                        length:'150',
+                        img:'../Assets/Img/services/hair13.jpg',
+                        description:'Foils are used to create lightness going all the way to the root. Service includes lightening with B3 for protection, shampoo, glaze and/or root smudge for a soft regrowth, blowdry and style. Partial includes everything but the nape area',
+                    },
+                    {
+                        title: 'FULL HIGHLIGHT/CUT/STYLE',
+                        category:'color services',
+                        cost:'315',
+                        length:'195',
+                        img:'../Assets/Img/services/hair14.jpg',
+                        description:'Foils are used to create lightness going all the way to the root. Service includes lightening with B3 for protection, shampoo, glaze and/or root smudge for a soft regrowth, cut, blowdry and style. A full includes the entire head of hair',
+                    },
+                    {
+                        title: 'FULL HIGHLIGHT/STYLE',
+                        category:'color services',
+                        cost:'245',
+                        length:'180',
+                        img:'../Assets/Img/services/hair15.jpg',
+                        description:'Foils are used to create lightness going all the way to the root. Service includes lightening with B3 for protection, shampoo, glaze and/or root smudge for a soft regrowth, blowdry and style. A full includes the entire head of hair',
+                    },
+                    {
+                        title: 'GLAZING/CUT/STYLE',
+                        category:'color services',
+                        cost:'165',
+                        length:'105',
+                        img:'../Assets/Img/services/hair16.jpg',
+                        description:'A glaze refreshes the tone of your highlights/color in between larger color services. It adds shine and neutralizes any unwanted tones. Service includes glaze, shampoo, conditioning treatment, cut, blowdry and style.',
+                    },
+                    {
+                        title: 'GLAZING/STYLE',
+                        category:'color services',
+                        cost:'85',
+                        length:'90',
+                        img:'../Assets/Img/services/hair17.jpg',
+                        description:'A glaze refreshes the tone of your highlights/color in between larger color services. It adds shine and neutralizes any unwanted tones. Service includes glaze, shampoo, conditioning treatment, blowdry and style',
+                    },
+                    {
+                        title: 'COLOR CORRECTION ($150/HR)',
+                        category:'color services',
+                        cost:'150',
+                        length:'180',
+                        img:'../Assets/Img/services/hair18.jpg',
+                        description:'A color correction refers to anytime you want to make a big change with your hair (for example going from all over brunette to very light blonde) or correcting an unwanted result from someone else. Service will be charged on an hourly basis ($150/hr). Consult required prior to booking this service',
+                    },
+                    // {
+                    //     title: '',
+                    //     category:'',
+                    //     cost:'',
+                    //     length:'',
+                    //     img:'',
+                    //     description:'',
+                    // },
+                ],
+                }
+            },
+            methods:{
+                toggleMobileNav(){
+                    var x = this;
+                    this.layout.nav.show = !this.layout.nav.show;
+                    if(x.layout.nav.show){
+                        gsap.to('.mobile-nav', 0.5,{
+                            width:'100%',
+                            opacity:1
+                        });
+                    }else{
+                        gsap.to('.mobile-nav', 0.5,{
+                            width:0,
+                            opacity:0
+                        });
+                    }
+                    
+                },
+                animateServices(){
+                    var x = this;
+                    if(x.intersectionObserver!=null){
+                        x.intersectionObserver.disconnect();
+                    }
+                    x.intersectionObserver = new IntersectionObserver((entries, observer) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                            // element is in viewport, do the stuff
+                            gsap.fromTo(entry.target, 0.8, {
+                                opacity: 0,
+                                rotateY:90,
+                                scale:0.5,
+                                transformOrigin:"50% 50%",
+                                y: 100,
+                                ease: "sine.inOut"
+                            },{
+                                opacity: 1,
+                                rotateY:0,
+                                scale:1,
+                                transformOrigin:"50% 50%",
+                                y: 0,
+                                ease: "sine.inOut"
+                            });
+                            // it's good to remove observer,
+                            // if you don't need it any more
+                            observer.unobserve(entry.target);
+                            }
+                        });
+                    });
+                    // get your elements, by class name
+                    const elements = [...document.querySelectorAll('.service')];
+                    // start observing your elements
+                    elements.forEach((element) => x.intersectionObserver.observe(element));
+                }
+            },
+            computed:{
+                filteredServices(){
+                    var x = this;
+                    return _.filter(x.services.list, function(item) {
+                         if(x.services.category == 'all'){
+                            return true;
+                         }else{
+                            return item.category == x.services.category; 
+                         }
+                    });
+                }
+            },
+            watch:{
+                filteredServices(newVal,oldVal){
+                    var x = this;
+                    //this.$nextTick(function () {
+                        x.animateServices();
+                    //});
+                }
+            },
+            mounted(){
+                var x = this;
+                x.window.width = window.innerWidth;
+                if(x.window.width<=800){
+                    x.window.mobileWidth = true;
+                }else{
+                    x.window.mobileWidth = false;
+                }
+                window.addEventListener('resize', () => {
+                    x.window.width = window.innerWidth;
+                    if(x.window.width<=800){
+                        x.window.mobileWidth = true;
+                    }else{
+                        x.window.mobileWidth = false;
+                    }
+                });
+
+                x.intersectionObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            // element is in viewport, do the stuff
+                            gsap.from(entry.target, 0.8, {
+                                opacity: 0,
+                                rotateY:90,
+                                scale:0.5,
+                                transformOrigin:"50% 50%",
+                                y: 100,
+                                ease: "sine.inOut"
+                            });
+                            // it's good to remove observer,
+                            // if you don't need it any more
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                });
+
+                // get your elements, by class name
+                const elements = [...document.querySelectorAll('.service')];
+
+                // start observing your elements
+                elements.forEach((element) => x.intersectionObserver.observe(element));
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+/*----- Containers -----*/
+[#{$attr}~=list],
+[#{$attr}|=list]{
+    --display: grid;
+    --gap: var(--space-xxsm);
+    grid-gap: var(--gap);
+    grid-auto-flow: row;
+    align-content: flex-start;
+}
+[#{$attr}|=list][#{$attr}*=column]{ /*--- or call it "list-wrap" or "list-horz" or "list-ltr" or "list-column" ---*/
+    grid-auto-flow: column;
+    justify-content: flex-start;
+}
+[#{$attr}|=list][#{$attr}*=fill]{
+	--min-size: 300px;
+	grid-auto-flow: unset;
+    grid-template-columns: repeat(auto-fill, minmax(var(--min-size), 1fr));
+}
+[#{$attr}|=list][#{$attr}*=between]{
+	justify-content:space-between;
+}
+[#{$attr}|=list][#{$attr}*=stretch]{
+	justify-content:space-between;
+	grid-template-columns: auto-fill;
+	justify-content: unset;
+}
+[#{$attr}|=list][#{$attr}*=stretch] > *{
+	width:100%;
+}
+@media (max-width:#{$mobile-width}){
+    [#{$attr}|=list][#{$attr}*=alt]{
+        grid-auto-flow: row;
+    }
+    [#{$attr}|=list][#{$attr}*=switch] {
+    	direction:rtl;
+		justify-content:left;
+    }
+}

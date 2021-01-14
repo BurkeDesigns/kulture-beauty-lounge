@@ -1,0 +1,33 @@
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #fff;
+  overflow-x: hidden;
+  transition: 0.2s;
+}
+
+.sidenav a {
+  color: black;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 25px;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}

@@ -1,0 +1,436 @@
+/*! ---------------------
+
+ACR CSS Design Standard
+Version: v0.1-alpha
+Author(s): Wesley Burke
+Updated: 1/30/2020
+
+--------------------- */
+
+/*----- Design Standard Variables ------*/
+$support-modern-browsers:true !default;
+/*----- Primary -----*/
+$color-ocean: #002d55 !default;
+$color-sea: #003c78 !default;
+$color-mist: #4876b7 !default;
+$color-rain: #0056c9 !default;
+$color-sky: #0068ff !default;
+$color-cloud: #3c8bfd !default;
+/*----- Accent -----*/
+$color-storm: #018786 !default;
+$color-frost: #03dac6 !default;
+$color-forest: #41a92a !default;
+$color-earth: #4e973e !default;
+$color-moon: #fd9509 !default;
+$color-dusk: #e31c3d !default;
+$color-sunset: #ff297d !default;
+$color-aurora: #6200ee !default;
+/*----- Black -----*/
+$color-black: #000000 !default;
+$color-80: rgba(0, 0, 0, 0.8) !default;
+$color-65: rgba(0, 0, 0, 0.65) !default;
+$color-40: rgba(0, 0, 0, 0.4) !default;
+$color-25: rgba(0, 0, 0, 0.25) !default;
+$color-13: rgba(0, 0, 0, 0.13) !default;
+$color-7: rgba(0, 0, 0, 0.07) !default;
+$color-3: rgba(128, 128, 128, 0.03) !default;
+$color-white: #ffffff !default;
+/*----- Transparent -----*/
+$color-earth-3: rgba(78, 151, 62, 0.03) !default;
+$color-moon-3: rgba(253, 149, 9, 0.03) !default;
+$color-dusk-3: rgba(227, 28, 61, 0.03) !default;
+$color-sky-3: rgba(0, 104, 255, 0.03) !default;
+$color-earth-5: rgba(78, 151, 62, 0.05) !default;
+$color-moon-5: rgba(253, 149, 9, 0.05) !default;
+$color-dusk-5: rgba(227, 28, 61, 0.05) !default;
+$color-sky-5: rgba(0, 104, 255, 0.05) !default;
+/*----- Typography -----*/
+$font-body: 'Roboto', sans-serif !default;
+$font-h1: 42px !default;
+$font-h2: 34px !default;
+$font-h3: 24px !default;
+$font-h4: 20px !default;
+$font-h5: 13px !default;
+$font-p: 16px !default;
+$font-p-bold: bold !default;
+/*----- Typography Weights -----*/
+$font-light:300 !default;
+$font-regular:400 !default;
+$font-medium:500 !default;
+$font-bold:700 !default;
+/*----- Layout -----*/
+$space-xxxsm: 4px !default;
+$space-xxsm: 8px !default;
+$space-xsm: 16px !default;
+$space-sm: 24px !default;
+$space-md: 32px !default;
+$space-lg: 48px !default;
+$space-xlg: 64px !default;
+$space-xxlg: 96px !default;
+/*----- Shape -----*/
+$border-style: solid !default;
+$border-width: 1px !default;
+$border-radius-3: 3px !default;
+$border-radius-100: 100% !default;
+$shadow-low: 0px 2px 7px rgba(0,2,7,0.1) !default;
+$shadow-high: 0px 2px 22px rgba(0,2,7,0.1) !default;
+
+:root {
+    /*----- Primary -----*/
+    --color-ocean:#{$color-ocean};
+    --color-sea:#{$color-sea};
+    --color-mist:#{$color-mist};
+    --color-rain:#{$color-rain};
+    --color-sky:#{$color-sky};
+    --color-cloud:#{$color-cloud};
+    /*----- Accent -----*/
+    --color-storm:#{$color-storm};
+    --color-frost:#{$color-frost};
+    --color-forest:#{$color-forest};
+    --color-earth:#{$color-earth};
+    --color-moon:#{$color-moon};
+    --color-dusk:#{$color-dusk};
+    --color-sunset:#{$color-sunset};
+    --color-aurora:#{$color-aurora};
+    /*----- Black -----*/
+    --color-black:#{$color-black};
+    --color-80:#{$color-80};
+    --color-65:#{$color-65};
+    --color-40:#{$color-40};
+    --color-25:#{$color-25};
+    --color-13:#{$color-13};
+    --color-7:#{$color-7};
+    --color-3:#{$color-3};
+    --color-white:#{$color-white};
+    /*----- Transparent -----*/
+    --color-earth-3:#{$color-earth-3};
+    --color-moon-3:#{$color-moon-3};
+    --color-dusk-3:#{$color-dusk-3};
+    --color-sky-3:#{$color-sky-3};
+    --color-earth-5:#{$color-earth-5};
+    --color-moon-5:#{$color-moon-5};
+    --color-dusk-5:#{$color-dusk-5};
+    --color-sky-5:#{$color-sky-5};
+    /*----- Typography -----*/
+    --font-body: 'Roboto', sans-serif;
+    --font-h1: 42px;
+    --font-h2: 34px;
+    --font-h3: 24px;
+    --font-h4: 20px;
+    --font-h5: 13px;
+    --font-p: 16px;
+    --font-p-bold: bold;
+    /*----- Typography Weights -----*/
+    --font-light:300;
+    --font-regular:400;
+    --font-medium:500;
+    --font-bold:700;
+    /*----- Layout -----*/
+    --space-xxxsm: 4px;
+    --space-xxsm: 8px;
+    --space-xsm: 16px;
+    --space-sm: 24px;
+    --space-md: 32px;
+    --space-lg: 48px;
+    --space-xlg: 64px;
+    --space-xxlg: 96px;
+    /*----- Shape -----*/
+    --border-style: solid;
+    --border-width: 1px;
+    --border-radius-3: 3px;
+    --border-radius-100: 100%;
+    --shadow-low: 0px 2px 7px rgba(0,2,7,0.1);
+    --shadow-high: 0px 2px 22px rgba(0,2,7,0.1);
+}
+
+@if $support-modern-browsers {
+    /*----- Primary -----*/
+    $color-ocean:var(--color-ocean);
+    $color-sea:var(--color-sea);
+    $color-mist:var(--color-mist);
+    $color-rain:var(--color-rain);
+    $color-sky:var(--color-sky);
+    $color-cloud:var(--color-cloud);
+    /*----- Accent -----*/
+    $color-storm:var(--color-storm);
+    $color-frost:var(--color-frost);
+    $color-forest:var(--color-forest);
+    $color-earth:var(--color-earth);
+    $color-moon:var(--color-moon);
+    $color-dusk:var(--color-dusk);
+    $color-sunset:var(--color-sunset);
+    $color-aurora:var(--color-aurora);
+    /*----- Black -----*/
+    $color-black:var(--color-black);
+    $color-80:var(--color-80);
+    $color-65:var(--color-65);
+    $color-40:var(--color-40);
+    $color-25:var(--color-25);
+    $color-13:var(--color-13);
+    $color-7:var(--color-7);
+    $color-3:var(--color-3);
+    $color-white:var(--color-white);
+    /*----- Transparent -----*/
+    $color-earth-3:var(--color-earth-3);
+    $color-moon-3:var(--color-moon-3);
+    $color-dusk-3:var(--color-dusk-3);
+    $color-sky-3:var(--color-sky-3);
+    $color-earth-5:var(--color-earth-5);
+    $color-moon-5:var(--color-moon-5);
+    $color-dusk-5:var(--color-dusk-5);
+    $color-sky-5:var(--color-sky-5);
+    /*----- Typography -----*/
+    $font-body:var(--font-body);
+    $font-h1:var(--font-h1);
+    $font-h2:var(--font-h2);
+    $font-h3:var(--font-h3);
+    $font-h4:var(--font-h4);
+    $font-h5:var(--font-h5);
+    $font-p:var(--font-p);
+    $font-p-bold:var(--font-bold);
+    /*----- Typography Weights -----*/
+    $font-light:var(--font-light);
+    $font-regular:var(--font-regular);
+    $font-medium:var(--font-medium);
+    $font-bold:var(--font-bold);
+    /*----- Layout -----*/
+    $space-xxxsm:var(--space-xxxsm);
+    $space-xxsm:var(--space-xxsm);
+    $space-xsm:var(--space-xsm);
+    $space-sm:var(--space-sm);
+    $space-md:var(--space-md);
+    $space-lg:var(--space-lg);
+    $space-xlg:var(--space-xlg);
+    $space-xxlg:var(--space-xxlg);
+    /*----- Shape -----*/
+    $border-style:var(--border-style);
+    $border-width:var(--border-width);
+    $border-radius-3:var(--border-radius-3);
+    $border-radius-100:var(--border-radius-100);
+    $shadow-low:var(--shadow-low);
+    $shadow-high:var(--shadow-high);
+    
+    
+}
+
+/*----- Other Default Styles  -----*/
+::-webkit-input-placeholder,  /* Edge */
+:-ms-input-placeholder,       /* Internet Explorer 10-11 */
+::placeholder {
+  color:$color-65;
+}
+/*--- Scrollbar  ---*/
+ /* Scrollbar width */
+ ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+/* Scrollbar Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Scrollbar Handle */
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 100px;
+}
+
+/* Scrollbar Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family:$font-body;
+    font-size:$space-xsm;
+}
+
+body * {
+    box-sizing: border-box;
+    outline: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-family:$font-body;
+    font-weight:$font-regular;
+}
+
+b{
+    font-weight:$font-bold;
+}
+
+[v-cloak] {
+    display: none !important;
+}
+
+/*----- All Elements -----*/
+[#{$attr}] {
+    all: unset;
+    $display: var(--display, block);
+    $height: var(--height, max-content);
+    $width: var(--width, auto);
+    $padding: var(--padding, 0px);
+    $border-radius: var(--border-radius, 0px);
+
+    $bg-color: var(--bg-color, transparent);
+    $hover-bg-color:#{$bg-color};
+    $pressed-bg-color:#{$bg-color};
+    $disabled-bg-color:#{$bg-color};
+
+    $border: var(--border, 0px);
+    $hover-border:#{$border};
+    $pressed-border:#{$border};
+    $disabled-border:#{$border};
+
+    $border-bottom: var(--border-bottom);
+    $hover-border-bottom:#{$border-bottom};
+    $pressed-border-bottom:#{$border-bottom};
+    $disabled-border-bottom:#{$border-bottom};
+
+    $color: var(--color, inherit);
+    $hover-color:#{$color};
+    $pressed-color:#{$color};
+    $disabled-color:#{$color};
+
+    $text-transform: var(--text-transform, none);
+    $transition: var(--transition, 0s);
+    $position: var(--position);
+
+    $direction: var(--direction);
+    $font-family: var(--font-body);
+    $font-weight: var(--font-regular);
+    $text-transform: var(--text-transform, none);
+
+    @if $support-modern-browsers == false {
+        $display: block;
+        $height: max-content;
+        $width: auto;
+        $padding: 0px;
+        $border-radius: 0px;
+    
+        $bg-color: transparent;
+        $hover-bg-color:#{$bg-color};
+        $pressed-bg-color:#{$bg-color};
+        $disabled-bg-color:#{$bg-color};
+    
+        $border: 0px;
+        $hover-border:#{$border};
+        $pressed-border:#{$border};
+        $disabled-border:#{$border};
+    
+        $border-bottom: 0px;
+        $hover-border-bottom:#{$border-bottom};
+        $pressed-border-bottom:#{$border-bottom};
+        $disabled-border-bottom:#{$border-bottom};
+    
+        $color: inherit;
+        $hover-color:#{$color};
+        $pressed-color:#{$color};
+        $disabled-color:#{$color};
+    
+        $text-transform: none;
+        $transition: 0s;
+        $position: relative;
+    }
+
+    display:#{$display};
+    height:#{$height};
+    width:#{$width};
+    padding:#{$padding};
+    border-radius:#{$border-radius};
+    background-color:#{$bg-color};
+    border:#{$border};
+    border-bottom:#{$border-bottom};
+    color:#{$color};
+    text-transform:#{$text-transform};
+    transition:#{$transition};
+    position:#{$position};
+    direction:#{$direction};
+    font-family:#{$font-body};
+    font-weight:#{$font-regular};
+
+    -webkit-text-fill-color: currentColor;
+    outline: none;
+    box-sizing: border-box;
+    margin:0;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/*----- Element States -----*/
+[#{$attr}]:hover {
+    background-color:#{hover-bg-color};
+    border:#{hover-border};
+    border-bottom:#{hover-border-bottom};
+    color:#{hover-color};
+}
+
+[#{$attr}]:active {
+    background-color:#{pressed-bg-color};
+    border:#{pressed-border};
+    border-bottom:#{pressed-border-bottom};
+    color:#{pressed-color};
+}
+
+[#{$attr}]:focus {
+    background-color:#{pressed-bg-color};
+    border:#{pressed-border};
+    border-bottom:#{pressed-border-bottom};
+    color:#{pressed-color};
+}
+
+[#{$attr}]:disabled,
+[#{$attr}][disabled],
+[#{$attr}~=disabled] {
+    background-color:#{disabled-bg-color} !important;
+    border:#{disabled-border} !important;
+    border-bottom:#{disabled-border-bottom} !important;
+    color:#{disabled-color} !important;
+    cursor: no-drop !important;
+}
+
+/*----- Element Modifiers -----*/
+[#{$attr}~=rnd] { /*--- Rounded ---*/
+    --border-radius: 100px !important;
+}
+[#{$attr}~=rnd3] { /*--- Rounded ---*/
+    --border-radius:#{$border-radius-3} !important;
+}
+[#{$attr}~=rnd100] { /*--- Rounded ---*/
+    --border-radius:#{$border-radius-100} !important;
+}
+
+[#{$attr}~=stretch] {
+    --width: 100% !important;
+}
+
+[#{$attr}~=shadow-sm] {
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.12)) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.24));
+}
+
+[#{$attr}~=shadow] {
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.39)); /* drop-shadow(0 3px 6px rgba(0, 0, 0, 0.16)) drop-shadow(0 3px 6px rgba(0, 0, 0, 0.23)); */
+}
+
+[#{$attr}~=shadow-lg] {
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.19)) drop-shadow(0 6px 6px rgba(0, 0, 0, 0.23));
+}
+
+[#{$attr}~=lg-txt]{
+    font-size:18px;
+}
+[#{$attr}~=sm-txt]{
+    font-size:12px;
+}
+[#{$attr}~=rtl]{
+    --direction: rtl;
+}
+[#{$attr}~=error-color]{
+    --color:#{$color-dusk};
+}

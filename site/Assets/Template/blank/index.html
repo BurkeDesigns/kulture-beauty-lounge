@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="UI/UX standardized component library and application design system for ACR developers. The ACR Application Design Standard library provides convenient access to ACR UI components from all of ACR's applications. It includes a pre-defined set of components tested in all major browsers that dynamically change state through a custom attribute global namespace.">
+
+    <title>Blank Template | ACR Template</title>
+
+    <!-- Please place other CSS libraries above here -->
+    <!-- ACR Standard CSS -->
+    <link href="Assets/CSS/standard.min.css" rel="stylesheet">
+
+    <!-- Coming soon! - Custom ACR CDN -->
+    <!-- <link href="https://cdn.acr.org/standard/css/latest/standard.min.css" rel="stylesheet"> -->
+
+    <!-- Async Non-critical CSS for performance -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+</head>
+
+<body>
+
+    <!-- Dev ONLY Scripts -->
+    <script src="Assets/JS/verify.js"></script>
+    <script>
+        // Logs ACR Standard Component Inventory & checks for Dev errors
+        window.onload = function() {
+            var acr = new Standard('acr');
+            acr.init();
+        };
+
+    </script>
+</body>
+
+</html>

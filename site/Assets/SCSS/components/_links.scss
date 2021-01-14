@@ -1,0 +1,15 @@
+/*--- Links ---*/
+[#{$attr}~=link],
+[#{$attr}|=link]{
+    --color:var(--color-sky);
+    /* --border-bottom: 1px solid transparent;
+    --hover-border-bottom: 1px solid var(--color-sky);
+    --pressed-border-bottom: 1px solid var(--color-sky); */
+    cursor:pointer;
+    font-size: inherit;
+    font-weight: var(--font-medium);
+}
+[#{$attr}=link]:hover,
+[#{$attr}|=link]:hover{
+    text-decoration: underline;
+}

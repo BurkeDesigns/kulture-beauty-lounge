@@ -1,0 +1,962 @@
+var app = new Vue({
+        el:'#app',
+        data: {
+            page: 'components',
+            collapseMenu: false,
+            subMenuSearchVal:'',
+            showDocumentation: false,
+            minBrowserSupport:['Chrome 49', 'Firefox 52', 'Safari 10.1', 'Edge 16'],
+            code:{
+                html: {
+                    value: 'Example code...'
+                },
+            },
+            githubDocumentation: '<h1 el>Test Documentation</h1>',
+            componentSelected:{},
+            currentComponentState:'',
+            selectedComponentModifiers:{},
+            componentData:{
+                tabs:{
+                    activetab:1,
+                }
+            },
+            menu: {
+                components:{
+                    label:'components',
+                    selectedSubMenu: 'btn',
+                    subMenu:[{
+                        label:'input',
+                        ref:'input',
+                    },
+                    {
+                        label:'button',
+                        ref:'btn',
+                    },
+                    // {
+                    //     label:'link',
+                    //     ref:'link',
+                    // },
+                    {
+                        label:'text',
+                        ref:'text',
+                    },
+                    {
+                        label:'progress',
+                        ref:'progress',
+                    },
+                    {
+                        label:'tabs',
+                        ref:'tabs',
+                    },
+                    {
+                        label:'notifications',
+                        ref:'notifications',
+                    },
+                    {
+                        label:'tooltip',
+                        ref:'tooltip',
+                    },
+                    {
+                        label:'table',
+                        ref:'table',
+                    }],
+                },
+                layouts:{
+                    label:'layouts',
+                    selectedSubMenu: 'layout',
+                    subMenu:[{
+                        label:'layouts',
+                        ref:'layout',
+                    },{
+                        label:'containers',
+                        ref:'containers',
+                    },
+                    {
+                        label:'header',
+                        ref:'header',
+                    },{
+                        label:'aside',
+                        ref:'aside',
+                    },{
+                        label:'section',
+                        ref:'section',
+                    },{
+                        label:'main',
+                        ref:'main',
+                    },{
+                        label:'footer',
+                        ref:'footer',
+                    }
+
+                    // ,{
+                    //     label:'application',
+                    //     ref:'app',
+                    // }
+                    ]
+                },
+                templates:{
+                    label:'templates',
+                    selectedSubMenu: 'blank',
+                    subMenu:[{
+                        label:'blank',
+                        ref:'blank',
+                    },
+                    {
+                        label:'user login',
+                        ref:'login',
+                    },
+                    {
+                        label:'dashboard',
+                        ref:'dashboard',
+                    },
+                    {
+                        label:'landing page',
+                        ref:'landing',
+                    }]
+                },
+                documentation:{
+                    label:'documentation',
+                    selectedSubMenu: 'github',
+                    reports:{
+                        componentProgressOrder:{
+                            column: 'status',
+                            order: 'asc',
+                        },
+
+                    },
+                    subMenu:[
+                        {
+                            label:'GitHub',
+                            ref:'github',
+                        },
+                        {
+                            label:'reports',
+                            ref:'reports',
+                        },
+                        {
+                            label:'guidlines',
+                            ref:'guidlines',
+                        }
+                    ],
+                },
+                design:{
+                    label:'design system',
+                    selectedSubMenu: 'globalLayout',
+                    subMenu:[{
+                        label:'pages',
+                        ref:'pages',
+                    },
+                    {
+                        label:'global layout',
+                        ref:'globalLayout',
+                    },
+                    {
+                        label:'main content',
+                        ref:'content',
+                    }]
+                },
+            },
+            components:{
+                //----- Inputs
+                input:{
+                    label:'input',
+                    page:'components',
+                    ref:'input',
+                    type: 'base',
+                    category:'input',
+                    componentDependencies:[],
+                    states: [
+                        'input',
+                        'input-label',
+                        'input-required',
+                        'input-required-label',
+                        'input-error',
+                        'input-error-label'
+                    ],
+                    modifiers:[],
+                    supportedTags: ['div','label'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'complete',
+                    notes:'',
+                },
+                radio:{
+                    label:'radio',
+                    page:'components',
+                    ref:'radio',
+                    type: 'base',
+                    category:'input',
+                    componentDependencies:[],
+                    states: ['input-list'],
+                    modifiers:['column'],
+                    supportedTags: ['div','input'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'complete',
+                    notes:'',
+                },
+                checkbox:{
+                    label:'checkbox',
+                    page:'components',
+                    ref:'checkbox',
+                    type: 'base',
+                    category:'input',
+                    componentDependencies:[],
+                    states: ['input-list','input-list-circle'],
+                    modifiers:['column'],
+                    supportedTags: ['div','input'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'complete',
+                    notes:'',
+                },
+                textarea:{
+                    label:'textarea',
+                    page:'components',
+                    ref:'textarea',
+                    type: 'base',
+                    category:'input',
+                    componentDependencies:[],
+                    states: [
+                        'input',
+                        'input-label',
+                        'input-required',
+                        'input-required-label',
+                        'input-error',
+                        'input-error-label'
+                    ],
+                    modifiers:[],
+                    supportedTags: ['div','label'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'complete',
+                    notes:'',
+                },
+                select:{
+                    label:'dropdown',
+                    page:'components',
+                    ref:'select',
+                    type: 'base',
+                    category:'input',
+                    componentDependencies:[],
+                    states: ['select'],
+                    modifiers:[],
+                    supportedTags: ['select'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'draft',
+                    notes:'',
+                },
+                //----- Buttons
+                link:{
+                    label:'link',
+                    page:'components',
+                    ref:'link',
+                    type: 'base',
+                    category:'btn',
+                    componentDependencies:[],
+                    states: ['link'],
+                    modifiers:[],
+                    supportedTags: ['a'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'in review',
+                    notes:'',
+                },
+                btn:{
+                    label:'button',
+                    page:'components',
+                    ref:'btn',
+                    type: 'base',
+                    category:'btn',
+                    componentDependencies:[],
+                    states: [
+                        'btn',
+                        'btn-2ry',
+                        'btn-style1-p1',
+                        'btn-style1-p1-2ry',
+                        'btn-style2-p2',
+                        'btn-style2-p2-2ry',
+                    ],
+                    modifiers:['rnd','disabled','stretch','shadow'],
+                    supportedTags: ['a','div','button','input'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'in review',
+                    notes:'',
+                },
+                'flat-btn':{
+                    label:'flat button',
+                    page:'components',
+                    ref:'flat-btn',
+                    type: 'base',
+                    category:'btn',
+                    componentDependencies:[],
+                    states: [
+                        'flat-btn',
+                        'flat-btn-2ry'
+                    ],
+                    modifiers:['disabled'],
+                    supportedTags: ['a','div','button','input'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'in review',
+                    notes:'',
+                },
+                toggle:{
+                    label:'toggle',
+                    page:'components',
+                    ref:'toggle',
+                    type: 'base',
+                    category:'btn',
+                    componentDependencies:[],
+                    states: [
+                        'toggle',
+                        'toggle-active',
+                    ],
+                    modifiers:['disabled','stretch', 'shadow'],
+                    supportedTags: ['div','button'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'complete',
+                    notes:'',
+                },
+                //----- Text
+                text:{
+                    label:'text',
+                    page:'components',
+                    ref:'text',
+                    type: 'base',
+                    category:'text',
+                    componentDependencies:[],
+                    states: ['el'],
+                    modifiers:[],
+                    supportedTags: ['h1','h2','h3','h4','h5','p', 'hr', 'div'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'complete',
+                    notes:'',
+                },
+                //----- Progress
+                'indeterminate-progress':{
+                    label:'indeterminate progress',
+                    page:'components',
+                    ref:'indeterminate-progress',
+                    type: 'base',
+                    category:'progress',
+                    componentDependencies:[],
+                    states: ['indeterminate-progress'],
+                    modifiers:[],
+                    supportedTags: ['div'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'in review',
+                    notes:'',
+                },
+                'indeterminate-loader':{
+                    label:'indeterminate loader',
+                    page:'components',
+                    ref:'indeterminate-loader',
+                    type: 'base',
+                    category:'progress',
+                    componentDependencies:[],
+                    states: ['indeterminate-loader'],
+                    modifiers:[],
+                    supportedTags: ['svg'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'draft',
+                    notes:'',
+                },
+                //----- Tabs
+                tabs:{
+                    label:'tabs',
+                    page:'components',
+                    ref:'tabs',
+                    type: 'base',
+                    category:'tabs',
+                    componentDependencies:[],
+                    states: ['tabs'],
+                    modifiers:[],
+                    supportedTags: ['div'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'complete',
+                    notes:'',
+                    data:{
+                        activetab: 1
+                    },
+                },
+                //----- Notifications
+                toasts:{
+                    label:'toasts',
+                    page:'components',
+                    ref:'toasts',
+                    type: 'base',
+                    category:'notifications',
+                    componentDependencies:[],
+                    states: [
+                        'toasts',
+                        'toasts-success',
+                        'toasts-warning',
+                        'toasts-error',
+                        'toasts-outline',
+                        'toasts-outline-success',
+                        'toasts-outline-warning',
+                        'toasts-outline-error',
+                    ],
+                    modifiers:[],
+                    supportedTags: ['div'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'complete',
+                    notes:'',
+                    data:{},
+                },
+                alerts:{
+                    label:'alerts',
+                    page:'components',
+                    ref:'alerts',
+                    type: 'base',
+                    category:'notifications',
+                    componentDependencies:[],
+                    states: [
+                        'alerts',
+                        'alerts-warning',
+                        'alerts-error',
+                    ],
+                    modifiers:[],
+                    supportedTags: ['div'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'in review',
+                    notes:'',
+                    data:{},
+                },
+                status:{
+                    label:'status',
+                    page:'components',
+                    ref:'status',
+                    type: 'base',
+                    category:'notifications',
+                    componentDependencies:[],
+                    states: [
+                        'status-info',
+                        'status-success',
+                        'status-warning',
+                        'status-error',
+                    ],
+                    modifiers:[],
+                    supportedTags: ['div'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'in review',
+                    notes:'',
+                    data:{},
+                },
+                //----- Tooltip
+                tooltip:{
+                    label:'tooltip',
+                    page:'components',
+                    ref:'tooltip',
+                    type: 'base',
+                    category:'tooltip',
+                    componentDependencies:[],
+                    states: [
+                        'tooltip-right',
+                        'tooltip-left',
+                        'tooltip-bottom',
+                        'tooltip-top'
+                    ],
+                    modifiers:[],
+                    supportedTags: ['div'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'complete',
+                    notes:'',
+                    data:{},
+                },
+                //----- Tables
+                table:{
+                    label:'table',
+                    page:'components',
+                    ref:'table',
+                    type: 'composition',
+                    category:'table',
+                    componentDependencies:['','',''],
+                    states: [
+                        'table',
+                        'table-action',
+                        'table-filter',
+                        'table-action-filter'
+                    ],
+                    modifiers:[],
+                    supportedTags: ['table'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'in progress',
+                    notes:'',
+                    data:{},
+                },
+                //----- Layouts
+                layout:{
+                    label:'desktop layout',
+                    page:'layouts',
+                    ref:'layout',
+                    type: 'composition',
+                    category:'layout',
+                    componentDependencies:[],
+                    states: [
+                        'layout-hmf',
+                        'layout-hm',
+                        'layout-am',
+                        'layout-ams',
+                        'layout-asm',
+                        'layout-ham',
+                        'layout-aham',
+                        'layout-ahams',
+                        'layout-hamsf'
+                    ],
+                    modifiers:['fixed'],
+                    supportedTags: ['div'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'in review',
+                    notes:'',
+                    data:{},
+                },
+                //----- Containers
+                list:{
+                    label:'lists',
+                    page:'layouts',
+                    ref:'list',
+                    type: 'base',
+                    category:'containers',
+                    componentDependencies:[],
+                    states: [
+                        'list',
+                        'list-column',
+                        'list-column-alt',
+                        'list-column-switch',
+                        'list-column-fill',
+                        'list-column-between',
+                        'list-column-stretch'
+                    ],
+                    modifiers:[],
+                    supportedTags: ['div'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'in review',
+                    notes:'',
+                    data:{},
+                },
+
+                header:{
+                    label:'header',
+                    page:'layouts',
+                    ref:'header',
+                    type: 'composition',
+                    category:'header',
+                    componentDependencies:['nav'],
+                    states: ['header'],
+                    modifiers:[],
+                    supportedTags: ['header', 'div'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'draft',
+                    notes:'',
+                    data:{},
+                },
+                nav:{
+                    label:'nav',
+                    page:'layouts',
+                    ref:'nav',
+                    type: 'composition',
+                    category:'header',
+                    componentDependencies:['link','dropdown'],
+                    states: ['nav'],
+                    modifiers:[],
+                    supportedTags: ['nav', 'div'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'draft',
+                    notes:'',
+                    data:{},
+                },
+                aside:{
+                    label:'aside',
+                    page:'layouts',
+                    ref:'aside',
+                    type: 'composition',
+                    category:'aside',
+                    componentDependencies:[],
+                    states: ['aside'],
+                    modifiers:[],
+                    supportedTags: ['aside', 'div'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'draft',
+                    notes:'',
+                    data:{},
+                },
+                section:{
+                    label:'section',
+                    page:'layouts',
+                    ref:'section',
+                    type: 'composition',
+                    category:'section',
+                    componentDependencies:[],
+                    states: ['section'],
+                    modifiers:[],
+                    supportedTags: ['section', 'div'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'draft',
+                    notes:'',
+                    data:{},
+                },
+                main:{
+                    label:'main',
+                    page:'layouts',
+                    ref:'main',
+                    type: 'composition',
+                    category:'main',
+                    componentDependencies:[],
+                    states: ['main'],
+                    modifiers:[],
+                    supportedTags: ['main', 'div'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'draft',
+                    notes:'',
+                    data:{},
+                },
+                footer:{
+                    label:'footer',
+                    page:'layouts',
+                    ref:'footer',
+                    type: 'composition',
+                    category:'footer',
+                    componentDependencies:[],
+                    states: ['footer'],
+                    modifiers:[],
+                    supportedTags: ['footer', 'div'],
+                    createdTimestamp:null,
+                    updatedTimestamp:null,
+                    status:'draft',
+                    notes:'',
+                    data:{},
+                },
+
+
+            }
+        },
+        methods:{
+            cPage(p){
+                var x = this;
+                x.page = p;
+                x.showDocumentation = false;
+                x.componentSelected = {};
+                x.collapseMenu = true;
+            },
+            cSubPage(val){
+                var x = this;
+                x.menu[x.page].selectedSubMenu = val;
+            },
+            showComponent(componentData){
+                var x = this;
+                x.cPage(componentData.page);
+                x.cSubPage(componentData.category);
+                x.selectComponent(componentData);
+            },
+            closeDocumentation(){
+                var x = this;
+                x.showDocumentation = false;
+                x.componentSelected = '';
+                x.selectedComponentModifiers = {};
+            },
+            selectComponent(item){
+                var x = this;
+                if(x.componentSelected != item){
+                    x.componentSelected = item;
+                    x.showDocumentation = true;
+                    x.currentComponentState = item.states[0];
+                }
+            },
+            toggleComponentModifier(item){
+                var x = this;
+                if(x.selectedComponentModifiers[item]){
+                    Vue.delete(x.selectedComponentModifiers, item);
+                }else{
+                    Vue.set(x.selectedComponentModifiers, item, true);
+                }
+
+            },
+            updateComponentData(prop, propVal){
+                var x = this;
+                x.componentData[componentSelected.ref][prop] = propVal;
+            },
+            getEstimatedDevTime(item){
+                var x = this;
+                // in hrs
+                var stateTime = (item.states.length + item.modifiers.length) * 1, //includes time to test component states
+                    addDependancyTime = item.componentDependencies.length * 0.1,
+                    reviewComponentTime = 0.5,
+                    addDocumentationTime = 1;
+
+                return stateTime + addDependancyTime + reviewComponentTime + addDocumentationTime;
+
+            },
+            getRealEstimatedDevTime(item){
+                var x = this;
+                // in hrs
+                var stateTime = (item.states.length + item.modifiers.length) * 1, //includes time to test component states
+                    addDependancyTime = item.componentDependencies.length * 0.1,
+                    reviewComponentTime = 0.5,
+                    addDocumentationTime = 1;
+
+                switch(item.status){
+                    case 'draft':
+                        return stateTime + addDependancyTime + reviewComponentTime + addDocumentationTime;
+                        break;
+                    case 'in progress':
+                        return stateTime + addDependancyTime + reviewComponentTime + addDocumentationTime;
+                        break;
+                    case 'in review':
+                        return reviewComponentTime + addDocumentationTime;
+                        break;
+                    case 'complete':
+                        return 0;
+                        break;
+                }
+
+            },
+            changeComponentOrder(column){
+                var x = this;
+                x.menu.documentation.reports.componentProgressOrder.column = column;
+                if(x.menu.documentation.reports.componentProgressOrder.order == 'asc'){
+                    x.menu.documentation.reports.componentProgressOrder.order = 'desc';
+                }else{
+                    x.menu.documentation.reports.componentProgressOrder.order == 'asc';
+                }
+            },
+            // copyToClipboard(ID) {
+            //     if (document.selection) {
+            //         var range = document.body.createTextRange();
+            //         range.moveToElementText(document.getElementById(ID));
+            //         range.select().createTextRange();
+            //         document.execCommand("copy");
+            //     } else if (window.getSelection) {
+            //         var range = document.createRange();
+            //         range.selectNode(document.getElementById(ID));
+            //         window.getSelection().addRange(range);
+            //         document.execCommand("copy");
+            //         alert("Text has been copied, now paste in the text-area");
+            //         //window.getSelection().removeAllRanges();
+            //     }
+            
+            // }
+            copyToClipboard(ID) {
+                var range = document.createRange();
+                range.selectNode(document.getElementById(ID));
+                window.getSelection().removeAllRanges();
+                window.getSelection().addRange(range);
+                document.execCommand("copy");
+                //alert("Text has been copied, now paste in the text-area");
+                window.getSelection().removeAllRanges();
+            
+            }
+        },
+        computed:{
+            optionList(){
+                var x = this;
+                return ;
+            },
+            filteredComponents(){
+                var x = this;
+                return _.filter(x.components, function(item){
+                    return item.category == x.menu[x.page].selectedSubMenu;
+                });
+            },
+            orderComponentsBy(){
+                var x = this;
+                return _.orderBy(x.components, [x.menu.documentation.reports.componentProgressOrder.column], [x.menu.documentation.reports.componentProgressOrder.order]); //desc
+            },
+            filterSubMenu(){
+                var x = this;
+                return _.filter(x.menu[x.page].subMenu, function(item){
+                    return _.startsWith(item.label, x.subMenuSearchVal);
+                });
+            },
+            getComponentState(){
+                var x = this;
+                var modifiers = Object.keys(x.selectedComponentModifiers);
+
+                if(modifiers.length > 0){
+                    modifiers = modifiers.join(' ');
+                    return x.currentComponentState+' '+modifiers;
+                }else{
+                    return x.currentComponentState;
+                }
+
+            },
+            getComponentDevTime(){
+                var x = this;
+                // in hrs
+                var stateTime = (x.componentSelected.states.length + x.componentSelected.modifiers.length) * 1, //includes time to test component states
+                    addDependancyTime = x.componentSelected.componentDependencies.length * 0.1,
+                    reviewComponentTime = 0.5,
+                    addDocumentationTime = 1;
+
+                return stateTime + addDependancyTime + reviewComponentTime + addDocumentationTime;
+
+            },
+            getAllComponentsDevTime(){
+                var x = this;
+                var totalEDT = 0;
+                _.forEach(x.components, function(item){
+                    totalEDT += x.getEstimatedDevTime(item);
+                });
+                return totalEDT;
+            },
+            getAllRealComponentsDevTime(){
+                var x = this;
+                var totalEDT = 0;
+                _.forEach(x.components, function(item){
+                    totalEDT += x.getRealEstimatedDevTime(item);
+                });
+                return totalEDT;
+            },
+            countAllComponentStates(){
+                var x = this;
+                var stateCount = 0,
+                    comboCount = 0;
+                _.forEach(x.components, function(item){
+                    let stateLen = item.states.length;
+                    stateCount += stateLen;
+                    comboCount += stateLen + (stateLen * item.modifiers.length);
+                });
+                return {stateCount: stateCount, comboCount: comboCount};
+            },
+            generateGithubDocs(){
+                var x = this;
+                var github = {
+                    section: {
+                        elementList:'',
+                    },
+                };
+                _.forEach(x.components, function(item){
+                    var modifiers = item.modifiers.length == 0? '' : '  - Modifiers: '+item.modifiers.join(', ')+'<br>';
+
+                    github.section.elementList +='- '+item.ref+'<br>'
+                        +'  - Element states: '+item.states.join(', ')+'<br>'
+                        + modifiers
+                        +'  - Supported HTML tags: '+item.supportedTags.join(', ')+'<br>'
+                        +'  - Component type: '+item.type+'<br>'
+                        //+'  - Component dependencies: '+item.componentDependencies.length == 0? 'none' : item.componentDependencies.join(', ') +'<br>'
+                        +'  - Status: '+item.status+'<br>';
+                });
+                return github;
+            }
+
+        },
+        watch: {
+            'componentSelected':function(newVal, oldVal){
+                var x=this;
+
+                Vue.nextTick(() => {
+                    // x.code.html.value = x.$refs[x.componentSelected.ref][0].innerHTML.replace(/<!---->/g, '').replace(/=""/g, '');
+                    if(newVal != oldVal){
+                        x.selectedComponentModifiers = {};
+                    }
+                });
+
+            },
+            'getComponentState': function(newVal, oldVal){
+                var x=this;
+
+                Vue.nextTick(() => {
+                    x.code.html.value = process(x.$refs[x.componentSelected.ref][0].innerHTML.replace(/<!---->/g, '').replace(/=""/g, ''));
+                });
+
+            },
+
+        }, 
+        //mounted(){
+            // var componentLength = this.components.length,
+            //     result = {};
+            // for (item in this.components){
+            //     var component = this.components[item];
+            //     var statesLen = component.states.length;
+            //     for(let i=0;i<statesLen;i++){
+            //         result[component.states[i]] = true;
+            //     }
+            // }
+            // console.log(JSON.stringify(result, null, 4));
+            // var el = new Standard('el');
+            // el.init();
+        //}
+    });
+
+    (async () => {
+        const getDocumentation = await fetch('README.txt', {
+               //credentials: 'include',
+               method: 'GET',
+               headers: {
+                   'Content-Type': 'text/plain'
+               },
+
+           });
+           const readMeContent = await getDocumentation.text();
+
+           const rawResponse = await fetch('https://api.github.com/markdown', {
+               //credentials: 'include',
+               method: 'POST',
+               headers: {
+                   'Content-Type': 'text/plain'
+               },
+               body: JSON.stringify({
+                   "text": readMeContent,
+                   "mode": "gfm",  //optional
+                   "context": "github/gollum" //optional
+               })
+           });
+           const content = await rawResponse.text();
+           app.githubDocumentation = content;
+           //console.log(content);
+       })();
+
+
+
+
+
+
+
+function process(str) {
+
+    var div = document.createElement('div');
+    div.innerHTML = str.trim();
+
+    return format(div, 0).innerHTML;
+}
+
+function format(node, level) {
+
+    var indentBefore = new Array(level++ + 1).join('    '),
+        indentAfter  = new Array(level - 1).join('    '),
+        textNode;
+
+    for (var i = 0; i < node.children.length; i++) {
+        textNode = document.createTextNode('\n' + indentBefore);
+        node.insertBefore(textNode, node.children[i]);
+
+        format(node.children[i], level);
+
+        if (node.lastElementChild == node.children[i]) {
+            textNode = document.createTextNode('\n' + indentAfter);
+            node.appendChild(textNode);
+        }
+    }
+
+    return node; //.replace('\n','')
+}

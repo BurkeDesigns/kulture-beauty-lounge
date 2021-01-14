@@ -1,0 +1,134 @@
+.title-icon{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+    
+        }
+        .title-icon i{
+            cursor:pointer;
+            color:var(--color-65);
+            transition:0.2s;
+        }
+        .title-icon i:hover{
+            cursor:pointer;
+            color:var(--color-sky);
+        }
+        .codeContainer{
+            --padding: 10px;
+            --bg-color: rgba(0,0,0,0.03);
+            max-height: 250px;
+            min-height: 50px;
+            overflow-y: auto;
+            border-radius: 3px;
+            overflow-x: hidden;
+            /* --border: 1px solid var(--color-7); */
+        }
+            .codeType{
+                font-size: 12px;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                color: var(--color-65);
+            }
+            .codeType i{
+                font-size: 20px;
+            }
+            pre{
+                white-space: pre-wrap;
+                /* user-select: all; */
+                padding:0;
+                margin:0;
+            }
+            pre code{
+                /* user-select: all; */
+                color:#2d2d2d;
+                -webkit-text-fill-color: currentColor;
+            }
+            .refSelected{
+                outline: 1px dashed var(--color-sky);
+                outline-offset: 5px;
+                resize: horizontal;
+                overflow: auto;
+                padding-right:15px;
+                display:inline-grid;
+                box-shadow: -10px 0 0 rgba(0,0,0,0.1) inset;
+            }
+            .none{
+                resize:unset;
+                box-shadow: unset;
+                padding-right: unset;
+                overflow: visible;
+            }
+            .elementStates{
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .elementStates > *{
+                margin:3px;
+                padding:3px 13px;
+                /* border: 1px solid var(--color-7); */
+                justify-self: flex-start;
+                border-radius:100px;
+                cursor: pointer;
+                background-color:rgba(0,0,0,0.03);
+                user-select: none;
+                color: var(--color-65);
+            }
+            /* .elementStates > *:hover{
+                color: var(--color-sky);
+            } */
+            .selectElementState{
+                color: var(--color-white);
+                -webkit-text-fill-color: currentColor;
+                background-color: var(--color-cloud);
+            }
+            .documentation{
+                /* padding: 100px var(--space-md); */
+                background-color: rgba(0, 0, 0, 0);
+            }
+            .documentation > *:first-child{
+                max-width: 960px;
+                /* margin:auto; */
+                padding:var(--space-lg);
+                /*Medium shadow:  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.16)) drop-shadow(0 3px 6px rgba(0, 0, 0, 0.23)); */
+                /* filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.19)) drop-shadow(0 6px 6px rgba(0, 0, 0, 0.23)); */
+                background-color: #fff;
+                color: #24292e;
+                -webkit-text-fill-color: currentColor;
+                min-height: calc(100vh - 200px);
+            }
+            .documentation pre{
+                padding: 10px;
+                background-color: rgba(0,0,0,0.03);
+                /* max-height: 250px; */
+                min-height: 50px;
+                overflow-y: auto;
+                border-radius: 3px;
+                overflow-x: hidden;
+                border: 1px solid var(--color-13);
+            }
+            /*--- GitHub Markdown ---*/
+            .pl-ent {
+                color: #22863a;
+                -webkit-text-fill-color: currentColor;
+            }
+            .pl-e, .pl-en {
+                color: #6f42c1;
+                -webkit-text-fill-color: currentColor;
+            }
+            .pl-pds, .pl-s, .pl-s .pl-pse .pl-s1, .pl-sr, .pl-sr .pl-cce, .pl-sr .pl-sra, .pl-sr .pl-sre {
+                color: #032f62;
+                -webkit-text-fill-color: currentColor;
+            }
+            .documentation h2,  h1{
+                padding-bottom: .3em;
+                border-bottom: 1px solid #eaecef;
+            }
+            [el|="toasts"] i:first-child:after,
+            [el~="toasts"] i:first-child:after{
+                content: 'info';
+            }
+            [el|="toasts"][el*="success"] i:first-child:after{
+                content: 'check_circle';
+            }

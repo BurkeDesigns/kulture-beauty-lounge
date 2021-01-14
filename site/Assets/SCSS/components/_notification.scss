@@ -1,0 +1,157 @@
+
+[#{$attr}~=toasts],
+[#{$attr}|=toasts]  {
+  --control-color: var(--color-sky);
+  --control-bg-color: var(--color-sky-5);
+  --bg-color: var(--control-bg-color);
+  --hover-bg-color: var(--control-bg-color);
+  --pressed-bg-color: var(--control-bg-color);
+  --padding: var(--space-xsm);
+  --color:var(--color-ocean);
+  /* margin: var(--space-xsm); */
+  align-items: center;
+  --border: 1px solid var(--control-color, --color);
+  border-radius: 4px;
+  --display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  grid-gap: 10px;
+}
+[#{$attr}~=toasts-success]{
+  --control-color: var(--color-forest);
+  --control-bg-color: var(--color-earth-5);
+}
+[#{$attr}~=toasts-warning]{
+  --control-color: var(--color-moon);
+  --control-bg-color: var(--color-moon-5);
+}
+[#{$attr}~=toasts-error]{
+  --control-color: var(--color-dusk);
+  --control-bg-color: var(--color-dusk-5);
+}
+[#{$attr}~=toasts-outline]{
+  --control-color: var(--color-sky);
+  --control-bg-color: transparent;
+}
+[#{$attr}~=toasts-outline-success]{
+  --control-color: var(--color-forest);
+  --control-bg-color: transparent;
+}
+[#{$attr}~=toasts-outline-warning]{
+  --control-color: var(--color-moon);
+  --control-bg-color: transparent;
+}
+[#{$attr}~=toasts-outline-error]{
+  --control-color: var(--color-dusk);
+  --control-bg-color: transparent;
+}
+[#{$attr}~=toasts] i,
+[#{$attr}|=toasts] i {
+  color: var(--control-color);
+  -webkit-text-fill-color:currentColor;
+}
+[#{$attr}~=toasts] i:hover,
+[#{$attr}|=toasts] i:hover {
+  color: var(--color-sky);
+}
+.close i{
+  color: var(--color-40);
+  -webkit-text-fill-color:currentColor;
+}
+[#{$attr}~=toasts] > *,
+[#{$attr}|=toasts] > *{
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 10px;
+  align-items: center;
+}
+.close {
+  cursor: pointer;
+}
+.close a
+{
+  color: var(--color-sky);
+  text-decoration: none;
+}
+.close a:hover {
+  color: var(--color-sky);
+  text-decoration: underline;
+}
+
+[#{$attr}~=alerts],
+[#{$attr}|=alerts]  {
+  --control-color: var(--color-sky);
+  --control-bg-color: transparent;
+  --bg-color: var(--control-bg-color);
+  --hover-bg-color: var(--control-bg-color);
+  --pressed-bg-color: var(--control-bg-color);
+  --padding: var(--space-xxsm);
+  /* margin: var(--space-xsm); */
+  --border: 1px solid var(--control-color, --color);
+  border-radius: 4px;
+  text-align: center;
+  text-transform: uppercase;
+}
+[#{$attr}~=alerts] > *,
+[#{$attr}|=alerts] > * {
+  color: var(--control-color);
+  -webkit-text-fill-color:currentColor;
+}
+[#{$attr}~=alerts-warning]{
+  --control-color: var(--color-moon);
+}
+[#{$attr}~=alerts-error]{
+  --control-color: var(--color-dusk);
+}
+
+[#{$attr}~=system-level],
+[#{$attr}|=system-level]  {
+  --control-color: var(--color-dusk);
+  --control-bg-color: transparent;
+  --bg-color: var(--control-bg-color);
+  --hover-bg-color: var(--control-bg-color);
+  --pressed-bg-color: var(--control-bg-color);
+  --padding: var(--space-xsm);
+  margin: var(--space-xsm);
+  --border: 1px solid var(--control-color, --color);
+  border-radius: 4px;
+  --display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  grid-gap: 10px;
+}
+[#{$attr}~=system-level] > *,
+[#{$attr}|=system-level] > * {
+  color: var(--control-color);
+  -webkit-text-fill-color:currentColor;
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 10px;
+}
+
+/*--- Status --*/
+[#{$attr}~=status],
+[#{$attr}|=status]  {
+  --display:inline-flex;
+  --height:28px;
+  --color:#fff;
+  --bg-color:var(--color-cloud);
+  --border-radius:var(--border-radius-3);
+  --padding:0 var(--space-xsm);
+  font-size:var(--font-h5);
+  text-transform: uppercase;
+  align-items: center;
+  min-width:max-content;
+  justify-content: center;
+  user-select: none;
+
+}
+[#{$attr}~=status-success]{
+  --bg-color:var(--color-forest);
+}
+[#{$attr}~=status-error]{
+  --bg-color:var(--color-dusk);
+}
+[#{$attr}~=status-warning]{
+  --bg-color:var(--color-moon);
+}

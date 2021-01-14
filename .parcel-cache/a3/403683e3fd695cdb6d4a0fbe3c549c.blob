@@ -1,0 +1,109 @@
+.layoutsPage [el*="layout"]{
+        width: 100%;
+        max-width: 400px;
+        min-width: 400px;
+        height: 300px;
+        min-height: 300px;
+        border:1px solid #000;
+        grid-gap: 1px;
+        background-color: #000;
+        overflow: hidden;
+    }
+    .layoutsPage [el*="layout"] > *{
+        background-color: #fff;
+        overflow: hidden;
+    }
+    /* .layoutsPage [el*="header"]{
+        --bg-color:var(--color-ocean);
+    } */
+    
+    /*--- Website Layouts ---*/
+    .layoutsPage [el~="layout-hmf"]{
+        --layout-columns: [header main footer] 1fr;
+        --layout-rows: [header] 1fr [main] 4fr [footer] 1fr;
+    }
+    .layoutsPage [el~="layout-hm"]{
+        --layout-columns: [header main] 1fr;
+        --layout-rows: [header] 1fr [main] 4fr;
+    }
+    
+    /*--- Application Layouts ---*/
+    .layoutsPage [el~="layout-am"]{
+        --layout-columns: [aside] 1fr [main] 3fr;
+        --layout-rows: [aside main] 1fr;
+    }
+    .layoutsPage [el~="layout-ams"]{
+        --layout-columns: [aside] 1fr [main] 3fr [section] 1fr;
+        --layout-rows: [aside section main] 1fr;
+    }
+    .layoutsPage [el~="layout-asm"]{
+        --layout-columns: [aside] 1fr [section] 1fr [main] 3fr;
+        --layout-rows: [aside section main] 1fr;
+    }
+    .layoutsPage [el~="layout-aham"]{
+        --layout-columns: [aside] 1fr [header main] 3fr;
+        --layout-rows: [aside-start header] 1fr [main] 4fr [aside-end];
+    }
+    .layoutsPage [el~="layout-ham"]{
+        --layout-columns: [header-start aside] 1fr [main] 3fr [header-end];
+        --layout-rows: [header] 1fr [aside main] 4fr;
+    }
+    .layoutsPage [el~="layout-ahams"]{
+        --layout-columns: [aside] 1fr [header-start main] 2fr [section] 2fr [header-end];
+        --layout-rows: [header aside-start] 1fr [main section] 4fr [aside-end];
+    }
+    .layoutsPage [el~="layout-hamsf"]{
+        --layout-columns: [header-start aside footer-start] 1fr [main] 3fr [section] 1fr [header-end footer-end];
+        --layout-rows: [header] 1fr [aside main section] 4fr [footer] 1fr;
+    }
+    
+    
+    
+    
+    
+    
+    .layoutsPage [el*="layout"] > *:after{
+            --content: 'header';
+            content: var(--content);
+            align-items: center;
+            justify-content: center;
+            border-radius: 3px;
+            display:flex;
+            position:absolute;
+            text-transform: uppercase;
+            width:100%;
+            height:100%;
+            top:0;
+            left:0;
+        }
+        .layoutsPage [el*="header"]:after{
+            --content:'header';
+        }
+        .layoutsPage [el*="aside"]:after{
+            --content:'aside';
+        }
+        .layoutsPage [el*="main"]:after{
+            --content:'main';
+        }
+        .layoutsPage [el*="section"]:after{
+            --content:'section';
+        }
+        .layoutsPage [el*="footer"]:after{
+            --content:'footer';
+        }
+        [el~='aside'],
+        [el|='aside']{
+            overflow: visible !important;
+        }
+        [el~='aside'][el*='showTooltip'],
+        [el|='aside'][el*='showTooltip']{
+            --color:#fff;
+        }
+        [el~='tooltip'],
+        [el|='tooltip']{
+            text-transform: capitalize;
+        }
+        .color-green{
+            color: green;
+            -webkit-text-fill-color: currentColor;
+        }

@@ -1,0 +1,95 @@
+/*----- Core Layout Styles -----*/
+[acr~="layout"],
+[acr|="layout"] {
+	--layout-columns: [header-start aside footer-start] 250px [main] 1fr [section] 200px [header-end footer-end];
+	--layout-rows: [header] minmax(80px, max-content) [aside main section] 1fr [footer] minmax(80px, max-content);
+    --display: grid;
+    --width: 100%;
+    --bg-color: transparent;
+    grid-template-columns: var(--layout-columns);
+    grid-template-rows: var(--layout-rows);
+    min-height: 100vh;
+}
+
+/*--- Layout States ---*/
+[acr|="layout"][acr*="fixed"] {
+	max-height:100vh;
+}
+[acr|="layout"][acr*="fixed"] > [acr~="main"],
+[acr|="layout"][acr*="fixed"] > [acr~="section"],
+[acr|="layout"][acr*="fixed"] > [acr~="aside"]{
+	overflow:auto;
+}
+
+/*--- Website Layouts ---*/
+[acr~="layout-hmf"]{
+    --layout-columns: [header main footer] 1fr;
+	--layout-rows: [header] minmax(80px, max-content) [main] 1fr [footer] minmax(80px, max-content);
+}
+[acr~="layout-hm"]{
+    --layout-columns: [header main] 1fr;
+	--layout-rows: [header] minmax(80px, max-content) [main] 1fr;
+}
+
+/*--- Application Layouts ---*/
+[acr~="layout-am"]{
+    --layout-columns: [aside] minmax(50px, max-content) [main] 1fr;
+	--layout-rows: [aside main] 1fr;
+}
+[acr~="layout-asm"]{
+    --layout-columns: [aside] minmax(50px, max-content) [section] 200px [main] 1fr;
+	--layout-rows: [aside section main] 1fr;
+}
+[acr~="layout-aham"]{
+    --layout-columns: [aside] 250px [header main footer] 1fr;
+	--layout-rows: [aside-start header] minmax(80px, max-content) [main] 1fr [footer] minmax(80px, max-content) [aside-end];
+}
+[acr~="layout-ham"]{
+    --layout-columns: [header-start aside] 250px [main] 1fr [header-end];
+	--layout-rows: [header] minmax(80px, max-content) [aside main] 1fr;
+}
+[acr~="layout-ahms"]{}
+
+
+/*--- Layout Elements ---*/
+[acr~="layout"] > [acr*="header"],
+[acr|="layout"] > [acr*="header"]{
+    grid-area: header;
+}
+
+[acr~="layout"] > [acr*="aside"],
+[acr|="layout"] > [acr*="aside"]{
+    grid-area: aside;
+}
+
+[acr~="layout"] > [acr*="section"],
+[acr|="layout"] > [acr*="section"]{
+    grid-area: section;
+}
+
+[acr~="layout"] > [acr*="main"],
+[acr|="layout"] > [acr*="main"]{
+    grid-area: main;
+}
+
+[acr~="layout"] > [acr*="footer"],
+[acr|="layout"] > [acr*="footer"]{
+    grid-area: footer;
+}
+
+[acr~="layout"] > *,
+[acr|="layout"] > *{
+    --height:auto;
+}
+
+/*--- Mobile Layouts ---*/
+@media (max-width: 800px){
+	[acr*="layout"]{
+		--layout-columns: [header aside main section footer] 1fr;
+		--layout-rows: [header] minmax(80px, max-content) [aside] 100px [main] 1fr [section] 200px [footer] minmax(80px, max-content);
+	}
+	[acr|="layout"][acr*="fixed"] {
+		max-height:unset;
+		overflow: unset;
+	}
+}

@@ -1,0 +1,24 @@
+/*----- Core Styles -----*/
+@import 'components/config'; // SCSS configuration, settings, and variables
+@import 'components/core';
+@import 'components/layout'; /*--- Layout Elements: header, section, footer, main ---*/
+@import 'components/containers'; /*--- Layout Elements: containers (lists) ---*/
+
+/*----- Component/Element Styles -----*/
+@import 'components/buttons';
+@import 'components/inputs'; /*--- Forms Elements: inputs, dropdowns, checkbox, radio, etc... ---*/
+@import 'components/links';
+@import 'components/text';
+@import 'components/progress-bar';
+@import 'components/tabs';
+@import 'components/notification';
+@import 'components/module'; /*--- Floating Modules: Popups, overlay menus ---*/
+@import 'components/tooltip';
+@import 'components/table'; 
+
+/*----- Draft Components (in progress) -----*/
+@import 'components/draft/toggle';
+@import 'components/draft/navbar';
+@import 'components/draft/loader';
+@import 'components/draft/upload';
+// @import 'components/draft/table';

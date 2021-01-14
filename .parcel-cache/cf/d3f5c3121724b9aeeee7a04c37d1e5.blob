@@ -1,0 +1,89 @@
+body{
+            background-repeat: no-repeat;
+            background-size: 50%;
+            background-position: center;
+            min-height: 100vh;
+        }
+        /*--- Containers/lists ---*/
+        [el*="layout"]:first-child [el~="aside"]{
+            --display: grid;
+            padding-top: 30px;
+            grid-template-rows: 1fr max-content;
+        }
+        [el*="layout"]:first-child [el~="section"]{
+            --bg-color: var(--color-7);
+            --display:grid;
+            grid-gap:var(--gap, var(--space-xsm));
+            grid-auto-flow: var(--flow, row);
+            align-content: flex-start;
+        }
+        [el~="aside"] [el~="list"]{
+            --color:#fff;
+        }
+        [el~="aside"] [el~="list"],
+        [el~="section"] [el~="list"]{
+            --gap:0px;
+        }
+    
+    
+        [el~="aside"] [el~="list"]>* {
+            width: 100%;
+            height: 45px;
+            display: grid;
+            grid-auto-flow: column;
+            grid-gap: 16px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            transition: 0.2s;
+            cursor: pointer;
+            user-select: none;
+            text-transform: capitalize;
+        }
+    
+        [el~="aside"] [el~="list"]>*:hover {
+            background-color: rgba(0, 0, 0, 0.13);
+        }
+        .currentPage {
+            background-color: rgba(0, 0, 0, 0.24) !important;
+            --control-color:var(--color-cloud);
+        }
+        .currentSubPage {
+            background-color: rgba(0, 0, 0, 0.05) !important;
+            --color: var(--color-sky);
+            -webkit-text-fill-color: var(--color) !important;
+        }
+        [el~="main"]{
+            overflow:auto;
+            --bg-color:#fff;
+        }
+        [el~="section"] [el~="list"]>* {
+            width: 100%;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            transition: 0.2s;
+            cursor: pointer;
+            user-select: none;
+            text-transform: capitalize;
+            color:var(--color-ocean);
+            -webkit-text-fill-color: currentColor;
+        }
+    
+        [el~="section"] [el~="list"]>*:hover {
+            background-color: rgba(0, 0, 0, 0.13);
+        }
+        .logo{
+            color:#fff;
+            -webkit-text-fill-color: currentColor;
+            margin: 30px;
+            display: flex;
+            justify-content: center;
+            padding-top: 30px;
+    
+        }
+        .menuBorder{
+            border-top: 1px solid #fff;
+        }

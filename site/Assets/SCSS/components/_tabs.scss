@@ -1,0 +1,27 @@
+[#{$attr}~=tabs],
+[#{$attr}|=tabs] {
+    --display:flex;
+    padding: 0 var(--space-sm);
+    box-shadow: 0px -2px 0 -1px var(--color-sky) inset;
+    --color: var(--color-sea);
+    font-weight: var(--font-medium);
+}
+
+
+[#{$attr}~=tabs] > *,
+[#{$attr}|=tabs] > *{
+    float: left;
+    cursor: pointer;
+    padding: var(--space-xxsm) var(--space-lg);
+    border-right: none;
+    border-radius: 5px 5px 0 0;
+    border: 1px solid transparent;
+}
+
+[#{$attr}~=tabs] > *.active {
+    background-color: var(--color-white);
+    color: var(--color-sky);
+    border: 1px solid var(--color-sky);
+    border-bottom: 1px solid var(--color-white);
+    -webkit-text-fill-color:currentColor;
+}

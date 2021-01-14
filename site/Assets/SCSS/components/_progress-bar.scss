@@ -1,0 +1,78 @@
+/*----- Indeterminate Progress Bar -----*/
+[#{$attr}~=indeterminate-progress] {
+    --width: 100%;
+    --height: 3px;
+    --bg-color: var(--color-13);
+    --hover-bg-color: var(--color-13);
+    --pressed-bg-color: var(--color-13);
+    top: 0;
+    left: 0;
+    position: absolute;
+    overflow-x: hidden;
+}
+
+[#{$attr}~=indeterminate-progress]:before, 
+[#{$attr}~=indeterminate-progress]:after{
+    content: '';
+    position: absolute;
+    background: var(--color-rain); /*--- #4a8df8 --*/
+    height: 100%;
+	animation: increase 3.5s infinite;
+}
+
+[#{$attr}~=indeterminate-progress]:after{
+    animation: decrease 3.5s 1s infinite;
+}
+
+@keyframes increase {
+    from {left: -5%; width: 5%;}
+    to {left: 130%; width: 100%;}
+}
+
+@keyframes decrease {
+    from {left: -80%; width: 80%;}
+    to {left: 110%;width: 10%;}
+}
+
+/*--- Indeterminate Loader ---*/
+// [#{$attr}=indeterminate-loader] {
+//     animation: rotator 1.4s linear infinite;
+//     --size:60px;
+// 	width:var(--size);
+// 	height:var(--size);
+// }
+
+// [#{$attr}=indeterminate-loader] circle {
+//     --dashoffset: 187;
+//     stroke-dasharray: var(--dashoffset);
+//     stroke-dashoffset: 0;
+//     stroke: var(--color-rain);
+//     transform-origin: center;
+//     animation: dash 1.4s ease-in-out infinite;
+// }
+
+// @keyframes rotator {
+//     0% {
+//         transform: rotate(0deg);
+//     }
+
+//     100% {
+//         transform: rotate(270deg);
+//     }
+// }
+
+// @keyframes dash {
+//     0% {
+//         stroke-dashoffset: var(--dashoffset);
+//     }
+
+//     50% {
+//         stroke-dashoffset: 46;
+//         transform: rotate(135deg);
+//     }
+
+//     100% {
+//         stroke-dashoffset: var(--dashoffset);
+//         transform: rotate(450deg);
+//     }
+// }

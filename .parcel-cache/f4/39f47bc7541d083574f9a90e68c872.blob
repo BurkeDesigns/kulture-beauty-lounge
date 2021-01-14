@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000">
+    <meta name="description" content="Description...">
+
+    <title>Design System</title>
+    <!-- <link href="Assets/CSS/components.css" rel="stylesheet"> -->
+    <!-- <link href="Assets/CSS/standard.min.css" rel="stylesheet"> -->
+    <link href="/index.e856c69a.css" rel="stylesheet">
+    
+    <!-- Async Non-critical CSS for performance -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://api.github.com">
+    
+    
+    <!-- production version, optimized for size and speed -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <style>body{
+            background-repeat: no-repeat;
+            background-size: 50%;
+            background-position: center;
+            min-height: 100vh;
+        }
+        /*--- Containers/lists ---*/
+        [el*="layout"]:first-child [el~="aside"]{
+            --display: grid;
+            padding-top: 30px;
+            grid-template-rows: 1fr max-content;
+        }
+        [el*="layout"]:first-child [el~="section"]{
+            --bg-color: var(--color-7);
+            --display:grid;
+            grid-gap:var(--gap, var(--space-xsm));
+            grid-auto-flow: var(--flow, row);
+            align-content: flex-start;
+        }
+        [el~="aside"] [el~="list"]{
+            --color:#fff;
+        }
+        [el~="aside"] [el~="list"],
+        [el~="section"] [el~="list"]{
+            --gap:0px;
+        }
+    
+    
+        [el~="aside"] [el~="list"]>* {
+            width: 100%;
+            height: 45px;
+            display: grid;
+            grid-auto-flow: column;
+            grid-gap: 16px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            transition: 0.2s;
+            cursor: pointer;
+            user-select: none;
+            text-transform: capitalize;
+        }
+    
+        [el~="aside"] [el~="list"]>*:hover {
+            background-color: rgba(0, 0, 0, 0.13);
+        }
+        .currentPage {
+            background-color: rgba(0, 0, 0, 0.24) !important;
+            --control-color:var(--color-cloud);
+        }
+        .currentSubPage {
+            background-color: rgba(0, 0, 0, 0.05) !important;
+            --color: var(--color-sky);
+            -webkit-text-fill-color: var(--color) !important;
+        }
+        [el~="main"]{
+            overflow:auto;
+            --bg-color:#fff;
+        }
+        [el~="section"] [el~="list"]>* {
+            width: 100%;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            transition: 0.2s;
+            cursor: pointer;
+            user-select: none;
+            text-transform: capitalize;
+            color:var(--color-ocean);
+            -webkit-text-fill-color: currentColor;
+        }
+    
+        [el~="section"] [el~="list"]>*:hover {
+            background-color: rgba(0, 0, 0, 0.13);
+        }
+        .logo{
+            color:#fff;
+            -webkit-text-fill-color: currentColor;
+            margin: 30px;
+            display: flex;
+            justify-content: center;
+            padding-top: 30px;
+    
+        }
+        .menuBorder{
+            border-top: 1px solid #fff;
+        }
+</style>
+    <style>.title-icon{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+    
+        }
+        .title-icon i{
+            cursor:pointer;
+            color:var(--color-65);
+            transition:0.2s;
+        }
+        .title-icon i:hover{
+            cursor:pointer;
+            color:var(--color-sky);
+        }
+        .codeContainer{
+            --padding: 10px;
+            --bg-color: rgba(0,0,0,0.03);
+            max-height: 250px;
+            min-height: 50px;
+            overflow-y: auto;
+            border-radius: 3px;
+            overflow-x: hidden;
+            /* --border: 1px solid var(--color-7); */
+        }
+            .codeType{
+                font-size: 12px;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                color: var(--color-65);
+            }
+            .codeType i{
+                font-size: 20px;
+            }
+            pre{
+                white-space: pre-wrap;
+                /* user-select: all; */
+                padding:0;
+                margin:0;
+            }
+            pre code{
+                /* user-select: all; */
+                color:#2d2d2d;
+                -webkit-text-fill-color: currentColor;
+            }
+            .refSelected{
+                outline: 1px dashed var(--color-sky);
+                outline-offset: 5px;
+                resize: horizontal;
+                overflow: auto;
+                padding-right:15px;
+                display:inline-grid;
+                box-shadow: -10px 0 0 rgba(0,0,0,0.1) inset;
+            }
+            .none{
+                resize:unset;
+                box-shadow: unset;
+                padding-right: unset;
+                overflow: visible;
+            }
+            .elementStates{
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .elementStates > *{
+                margin:3px;
+                padding:3px 13px;
+                /* border: 1px solid var(--color-7); */
+                justify-self: flex-start;
+                border-radius:100px;
+                cursor: pointer;
+                background-color:rgba(0,0,0,0.03);
+                user-select: none;
+                color: var(--color-65);
+            }
+            /* .elementStates > *:hover{
+                color: var(--color-sky);
+            } */
+            .selectElementState{
+                color: var(--color-white);
+                -webkit-text-fill-color: currentColor;
+                background-color: var(--color-cloud);
+            }
+            .documentation{
+                /* padding: 100px var(--space-md); */
+                background-color: rgba(0, 0, 0, 0);
+            }
+            .documentation > *:first-child{
+                max-width: 960px;
+                /* margin:auto; */
+                padding:var(--space-lg);
+                /*Medium shadow:  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.16)) drop-shadow(0 3px 6px rgba(0, 0, 0, 0.23)); */
+                /* filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.19)) drop-shadow(0 6px 6px rgba(0, 0, 0, 0.23)); */
+                background-color: #fff;
+                color: #24292e;
+                -webkit-text-fill-color: currentColor;
+                min-height: calc(100vh - 200px);
+            }
+            .documentation pre{
+                padding: 10px;
+                background-color: rgba(0,0,0,0.03);
+                /* max-height: 250px; */
+                min-height: 50px;
+                overflow-y: auto;
+                border-radius: 3px;
+                overflow-x: hidden;
+                border: 1px solid var(--color-13);
+            }
+            /*--- GitHub Markdown ---*/
+            .pl-ent {
+                color: #22863a;
+                -webkit-text-fill-color: currentColor;
+            }
+            .pl-e, .pl-en {
+                color: #6f42c1;
+                -webkit-text-fill-color: currentColor;
+            }
+            .pl-pds, .pl-s, .pl-s .pl-pse .pl-s1, .pl-sr, .pl-sr .pl-cce, .pl-sr .pl-sra, .pl-sr .pl-sre {
+                color: #032f62;
+                -webkit-text-fill-color: currentColor;
+            }
+            .documentation h2,  h1{
+                padding-bottom: .3em;
+                border-bottom: 1px solid #eaecef;
+            }
+            [el|="toasts"] i:first-child:after,
+            [el~="toasts"] i:first-child:after{
+                content: 'info';
+            }
+            [el|="toasts"][el*="success"] i:first-child:after{
+                content: 'check_circle';
+            }
+</style>
+    <style>.layoutsPage [el*="layout"]{
+        width: 100%;
+        max-width: 400px;
+        min-width: 400px;
+        height: 300px;
+        min-height: 300px;
+        border:1px solid #000;
+        grid-gap: 1px;
+        background-color: #000;
+        overflow: hidden;
+    }
+    .layoutsPage [el*="layout"] > *{
+        background-color: #fff;
+        overflow: hidden;
+    }
+    /* .layoutsPage [el*="header"]{
+        --bg-color:var(--color-ocean);
+    } */
+    
+    /*--- Website Layouts ---*/
+    .layoutsPage [el~="layout-hmf"]{
+        --layout-columns: [header main footer] 1fr;
+        --layout-rows: [header] 1fr [main] 4fr [footer] 1fr;
+    }
+    .layoutsPage [el~="layout-hm"]{
+        --layout-columns: [header main] 1fr;
+        --layout-rows: [header] 1fr [main] 4fr;
+    }
+    
+    /*--- Application Layouts ---*/
+    .layoutsPage [el~="layout-am"]{
+        --layout-columns: [aside] 1fr [main] 3fr;
+        --layout-rows: [aside main] 1fr;
+    }
+    .layoutsPage [el~="layout-ams"]{
+        --layout-columns: [aside] 1fr [main] 3fr [section] 1fr;
+        --layout-rows: [aside section main] 1fr;
+    }
+    .layoutsPage [el~="layout-asm"]{
+        --layout-columns: [aside] 1fr [section] 1fr [main] 3fr;
+        --layout-rows: [aside section main] 1fr;
+    }
+    .layoutsPage [el~="layout-aham"]{
+        --layout-columns: [aside] 1fr [header main] 3fr;
+        --layout-rows: [aside-start header] 1fr [main] 4fr [aside-end];
+    }
+    .layoutsPage [el~="layout-ham"]{
+        --layout-columns: [header-start aside] 1fr [main] 3fr [header-end];
+        --layout-rows: [header] 1fr [aside main] 4fr;
+    }
+    .layoutsPage [el~="layout-ahams"]{
+        --layout-columns: [aside] 1fr [header-start main] 2fr [section] 2fr [header-end];
+        --layout-rows: [header aside-start] 1fr [main section] 4fr [aside-end];
+    }
+    .layoutsPage [el~="layout-hamsf"]{
+        --layout-columns: [header-start aside footer-start] 1fr [main] 3fr [section] 1fr [header-end footer-end];
+        --layout-rows: [header] 1fr [aside main section] 4fr [footer] 1fr;
+    }
+    
+    
+    
+    
+    
+    
+    .layoutsPage [el*="layout"] > *:after{
+            --content: 'header';
+            content: var(--content);
+            align-items: center;
+            justify-content: center;
+            border-radius: 3px;
+            display:flex;
+            position:absolute;
+            text-transform: uppercase;
+            width:100%;
+            height:100%;
+            top:0;
+            left:0;
+        }
+        .layoutsPage [el*="header"]:after{
+            --content:'header';
+        }
+        .layoutsPage [el*="aside"]:after{
+            --content:'aside';
+        }
+        .layoutsPage [el*="main"]:after{
+            --content:'main';
+        }
+        .layoutsPage [el*="section"]:after{
+            --content:'section';
+        }
+        .layoutsPage [el*="footer"]:after{
+            --content:'footer';
+        }
+        [el~='aside'],
+        [el|='aside']{
+            overflow: visible !important;
+        }
+        [el~='aside'][el*='showTooltip'],
+        [el|='aside'][el*='showTooltip']{
+            --color:#fff;
+        }
+        [el~='tooltip'],
+        [el|='tooltip']{
+            text-transform: capitalize;
+        }
+        .color-green{
+            color: green;
+            -webkit-text-fill-color: currentColor;
+        }
+</style>
+    <style>.fade-enter-active, .fade-leave-active {
+      transition: opacity .5s;
+    }
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+      opacity: 0;
+    }
+</style>
+    <style>.box{
+            --height:100px;
+            --width:100px;
+            height:var(--size, var(--height));
+            width:var(--size, var(--width));
+            --bg-color: #fff;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:13px;
+            --color:var(--color-65);
+        }
+        .color-box{
+            --size:18px;
+            --border:1px solid var(--color-13);
+            box-shadow: var(--shadow-low);
+        }
+        [el=box]{
+            --height:var(--size, 100px);
+            --width:var(--size, 100px);
+            --bg-color: #fff;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:13px;
+            --color:var(--color-65);
+        }
+        .box-outline{
+            height:40px;
+            width:100px;
+            --bg-color: #fff;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:13px;
+            --color:var(--color-65);
+            --border:1px solid var(--color-65);
+    
+        }
+        .list-box > * > *{
+            border:1px solid var(--color-65);
+            min-height:50px;
+            min-width:50px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+        .copyToClipboard{
+            font-size: 20px;
+            color: var(--color-40);
+            -webkit-text-fill-color: currentColor;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+        .copyToClipboard:hover{
+            color:var(--color-sky);
+        }
+</style>
+</head>
+
+
+<body>
+    <template id="app">
+        
+    <div el="layout-asm fixed">
+        <header el="aside shadow-sm" style="--bg-color:var(--color-ocean);z-index:5;">
+            <section el="list">
+                <div v-for="(item, key) in menu" :class="{currentPage: page == key}" @click="cPage(key)" el="showTooltip" style="--color:var(--control-color, white);">
+                    <span v-if="!collapseMenu">{{item.label}}</span>
+                    <i class="material-icons" v-if="item.label == 'components'">dashboard</i>
+                    <i class="material-icons" v-else-if="item.label == 'layouts'">web</i>
+                    <i class="material-icons" v-else-if="item.label == 'templates'">layers</i>
+                    <i class="material-icons" v-else-if="item.label == 'documentation'">subject</i>
+                    <i class="material-icons" v-else-if="item.label == 'design system'">play_arrow</i>
+                    
+                    <div el="tooltip-right shadow" v-if="collapseMenu">
+                        <div>{{item.label}}</div>
+                    </div>
+                    
+                    <!-- <svg v-if="item.label == 'components'" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26"><g transform="translate(186.5 1245.5)"><path d="M0,0H11a0,0,0,0,1,0,0V11a0,0,0,0,1,0,0H2A2,2,0,0,1,0,9V0A0,0,0,0,1,0,0Z" transform="translate(-186 -1231)" fill="none" stroke="#fff" stroke-linejoin="bevel" stroke-width="1"/><path d="M0,0H12a0,0,0,0,1,0,0V9a2,2,0,0,1-2,2H0a0,0,0,0,1,0,0V0A0,0,0,0,1,0,0Z" transform="translate(-175 -1231)" fill="none" stroke="#fff" stroke-linejoin="bevel" stroke-width="1"/><path d="M2,0h9a0,0,0,0,1,0,0V12a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" transform="translate(-186 -1243)" fill="none" stroke="#fff" stroke-linejoin="bevel" stroke-width="1"/><rect width="11" height="11" rx="2" stroke-width="1" fill="none" stroke="#fff" stroke-linejoin="bevel" transform="translate(-172 -1245)"/></g></svg>
+                    <svg v-else-if="item.label == 'layouts'" xmlns="http://www.w3.org/2000/svg" width="25" height="23" viewBox="0 0 25 23"><g transform="translate(-225 -190)"><g transform="translate(225 190)" fill="none" stroke="#fff" stroke-width="1"><rect width="25" height="23" rx="2" stroke="none"/><rect x="0.5" y="0.5" width="24" height="22" rx="1.5" fill="none"/></g><line y2="22.597" transform="translate(233.468 190.403)" fill="none" stroke="#fff" stroke-width="1"/><line x2="16.129" transform="translate(233.468 196.273)" fill="none" stroke="#fff" stroke-width="1"/></g></svg>
+                    <svg v-else-if="item.label == 'templates'" xmlns="http://www.w3.org/2000/svg" width="25" height="23" viewBox="0 0 25 23"><g transform="translate(186 1123)"><g transform="translate(-186 -1123)" fill="none" stroke="#fff" stroke-width="1"><rect width="21" height="19" rx="2" stroke="none"/><rect x="0.5" y="0.5" width="20" height="18" rx="1.5" fill="none"/></g><g transform="translate(-186 -1123)" fill="none"><path d="M6,23a2,2,0,0,1-2-2V19H2a2,2,0,0,1-2-2V2A2,2,0,0,1,2,0H19a2,2,0,0,1,2,2V4h2a2,2,0,0,1,2,2V21a2,2,0,0,1-2,2Z" stroke="none"/><path d="M 23.00040054321289 22.00040054321289 C 23.55169105529785 22.00040054321289 24.00020027160645 21.55149078369141 24.00020027160645 20.99970054626465 L 24.00020027160645 6.000300407409668 C 24.00020027160645 5.44851016998291 23.55169105529785 4.999600410461426 23.00040054321289 4.999600410461426 L 20.99970054626465 4.999600410461426 L 19.99970054626465 4.999600410461426 L 19.99970054626465 3.999600172042847 L 19.99970054626465 1.999800324440002 C 19.99970054626465 1.4485102891922 19.55118942260742 1.000000238418579 18.99990081787109 1.000000238418579 L 1.999800086021423 1.000000238418579 C 1.44851016998291 1.000000238418579 1.00000011920929 1.4485102891922 1.00000011920929 1.999800324440002 L 1.00000011920929 17.00010108947754 C 1.00000011920929 17.55138969421387 1.44851016998291 17.99990081787109 1.999800086021423 17.99990081787109 L 3.999600172042847 17.99990081787109 L 4.999599933624268 17.99990081787109 L 4.999599933624268 18.99990081787109 L 4.999599933624268 20.99970054626465 C 4.999599933624268 21.55149078369141 5.44851016998291 22.00040054321289 6.00029993057251 22.00040054321289 L 23.00040054321289 22.00040054321289 M 23.00040054321289 23.00040054321289 L 6.00029993057251 23.00040054321289 C 4.895100116729736 23.00040054321289 3.999600172042847 22.10490036010742 3.999600172042847 20.99970054626465 L 3.999600172042847 18.99990081787109 L 1.999800086021423 18.99990081787109 C 0.895500123500824 18.99990081787109 1.358032193365943e-07 18.10440063476563 1.358032193365943e-07 17.00010108947754 L 1.358032193365943e-07 1.999800324440002 C 1.358032193365943e-07 0.8955002427101135 0.895500123500824 2.716064386731887e-07 1.999800086021423 2.716064386731887e-07 L 18.99990081787109 2.716064386731887e-07 C 20.10420036315918 2.716064386731887e-07 20.99970054626465 0.8955002427101135 20.99970054626465 1.999800324440002 L 20.99970054626465 3.999600172042847 L 23.00040054321289 3.999600172042847 C 24.10470008850098 3.999600172042847 25.00020027160645 4.895100116729736 25.00020027160645 6.000300407409668 L 25.00020027160645 20.99970054626465 C 25.00020027160645 22.10490036010742 24.10470008850098 23.00040054321289 23.00040054321289 23.00040054321289 Z" stroke="none" fill="#fff"/></g></g></svg>
+                    <svg v-else-if="item.label == 'documentation'" xmlns="http://www.w3.org/2000/svg" width="20.8" height="22.85" viewBox="0 0 20.8 22.85"><g transform="translate(-231.5 -313)"><path d="M242.139,313.55l6.461,5.8v16H228.8v-21.8Z" transform="translate(3.2)" fill="none" stroke="#fff" stroke-linejoin="round" stroke-width="1"/><line y2="6" transform="translate(245.235 313.5)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/><line x1="6" transform="translate(245.5 319.5)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/></g></svg>
+                    <svg v-else-if="item.label == 'design system'" xmlns="http://www.w3.org/2000/svg" width="25.755" height="25.547" viewBox="0 0 25.755 25.547"><g transform="translate(130.549 -362.912) rotate(20)" fill="none"><path d="M9.5,385l15.75,5.5-7,3-3,7Z" stroke="none"/><path d="M 9.5 385 L 15.25 400.5 L 18.25 393.5 L 25.25 390.5 L 9.5 385 M 7.823259353637695 383.3552551269531 L 9.829679489135742 384.055908203125 L 25.57968139648438 389.555908203125 L 28.01066970825195 390.4048156738281 L 25.6439208984375 391.4191589355469 L 19.01158142089844 394.2615661621094 L 16.16914939880371 400.8939208984375 L 15.18306922912598 403.1947631835938 L 14.31242942810059 400.8478088378906 L 8.562429428100586 385.3478088378906 L 7.823259353637695 383.3552551269531 Z" stroke="none" fill="#fff"/></g></svg> -->
+
+                </div>
+            </section>
+            <div :class="{logo: true, menuBorder: !collapseMenu}">
+                <img v-if="!collapseMenu" src="/ACR_logo_white.eab9c752.svg" alt="logo">
+                <i v-else="" class="material-icons" @click="collapseMenu = false" style="cursor:pointer;">menu</i>
+            </div>
+        </header>
+        <section el="section" style="padding-top: 30px;max-width:200px;">
+           <div el="input-list" style="padding: 0 30px;"> <!-- v-if="page != 'documentation'" -->
+               <label for="search" el="input">
+                   <div el="sm-txt label">Search</div>
+                   <input type="text" name="search" id="search" placeholder="Search" autocomplete="off" v-model="subMenuSearchVal" el="">
+                   <div el="sm-txt error error-color">Error message</div>
+                   <div el="sm-txt required error-color">*Required</div>
+               </label>
+           </div>
+            <section el="list">
+                <div v-for="item in filterSubMenu" :class="{currentSubPage: item.ref == menu[page].selectedSubMenu}" @click="cSubPage(item.ref)">{{item.label}}</div>
+            </section>
+        </section>
+        <main el="main">
+            
+            <div el="list" style="--gap:15px;padding:32px;" v-if="page == 'components'">
+
+                <!-- <span style="cursor: pointer;" @click="componentSelected = item; showDocumentation = true;" v-for="item in filteredComponents">{{item.label}}</span> -->
+
+
+                <div @click="selectComponent(item)" v-for="item in filteredComponents" :key="item.label">
+                    <div :class="{refSelected: componentSelected == item, none: item.ref == 'tooltip'}" style="display: inline-grid;">
+                        <!-- Buttons -->
+                        <div v-if="item.ref == 'btn'" ref="btn">
+                            <div :el="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0] : getComponentState">Button</div>
+                            
+                        </div>
+                        <div v-if="item.ref == 'flat-btn'" ref="flat-btn">
+                            <button :el="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0] : getComponentState"><i class="material-icons">add_circle</i><span>Flat Button</span></button>
+                        </div>
+                        <div v-if="item.ref == 'toggle'" ref="toggle">
+                            <div :el="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0] : getComponentState">toggle</div>
+                        </div>
+                        <div v-if="item.ref == 'link'" ref="link">
+                            <a href="#" @click.prevent="" :el="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0] : getComponentState">Link</a>
+                        </div>
+                        <!-- Inputs -->
+                        <div v-if="item.ref == 'input'" ref="input">
+                            <div el="input-list">
+                                <label for="inputID" :el="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0] : getComponentState">
+                                        <div el="sm-txt label">Label</div>
+                                    <input type="text" name="input" id="inputID" placeholder="Input" el="">
+                                    <div el="sm-txt error error-color">Error message</div>
+                                    <div el="sm-txt required error-color">*Required</div>
+                                </label>
+                            </div>
+                        </div>
+                        <div v-if="item.ref == 'textarea'" ref="textarea">
+                            <div el="input-list">
+                                <label for="textarea1" :el="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0] : getComponentState">
+                                    <div el="sm-txt label" style="margin-bottom:var(--space-xxxsm);">Label</div>
+                                    <textarea name="textarea1" id="textarea1" placeholder="Textarea" cols="30" rows="10" el=""></textarea>
+                                    <div el="sm-txt error error-color">Error message</div>
+                                    <div el="sm-txt required error-color">*Required</div>
+                                </label>
+                            </div>
+                        </div>
+                        <div v-if="item.ref == 'radio'" ref="radio">
+                                <div :el="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0] : getComponentState" style="--gap:4px;">
+                                    <label for="female">
+                                            <input type="radio" name="gender" id="female" value="female">
+                                            <i class="material-icons"></i>
+                                        <span>Option</span>
+                                    </label>
+                                    <label for="male">
+                                        <input type="radio" name="gender" id="male" value="male">
+                                        <i class="material-icons"></i>
+                                        <span>Option</span>
+                                    </label>
+                                </div>
+                        </div>
+                        <div v-if="item.ref == 'checkbox'" ref="checkbox">
+                            <div :el="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0] : getComponentState" style="--gap:4px;">
+                                <label for="option1">
+                                        <input type="checkbox" id="option1" value="option1">
+                                        <i class="material-icons"></i>
+                                    <span>Checkbox 1</span>
+                                </label>
+                                    <label for="option2">
+                                        <input type="checkbox" id="option2" value="option2">
+                                        <i class="material-icons"></i>
+                                        <span>Checkbox 2</span>
+                                    </label>
+                            </div>
+                        </div>
+                        <div v-if="item.ref == 'select'" ref="select">
+                                <div el="input-list">
+                                    <label for="select1" el="select">
+                                        <select name="" id="select1">
+                                            <option value="">Dropdown</option>
+                                            <option value="2">Option 2</option>
+                                            <option value="3">Option 3</option>
+                                            <option value="4">Option 4</option>
+                                        </select>
+                                        <i class="material-icons"></i>
+                                    </label>
+                                </div>
+                        </div>
+                        <!-- Text -->
+                        <div v-if="item.ref == 'text'" ref="text">
+                            <div el="list">
+                                    <h1 el="">H1: Main Title</h1>
+                                    <h2 el="">H2: Section heading</h2>
+                                    <h3 el="">H3: Subsection heading</h3>
+                                    <h4 el="">H4: Subsection heading</h4>
+                                    <h5 el="">H5: Subsection heading</h5>
+                                    <hr el="">
+                                    <p el="">Paragraph text</p>
+                                    <p el="bold">Paragraph bold text</p>
+                                    <p el="underline">Paragraph underline text</p>
+                                    <p el="italic">Paragraph italics text</p>
+                                    <ul el="">
+                                        <li>List Item</li>
+                                        <li>List Item</li>
+                                        <li>List Item</li>
+                                    </ul>
+                                    <ol el="">
+                                        <li>List Item</li>
+                                        <li>List Item</li>
+                                        <li>List Item</li>
+                                    </ol>
+                            </div>
+                        </div>
+                        <!-- Progress -->
+                        <div v-if="item.ref == 'indeterminate-progress'" ref="indeterminate-progress" style="position: relative;min-height:35px;min-width:100px;">
+                            <div el="indeterminate-progress"></div>
+                        </div>
+                        <div v-if="item.ref == 'indeterminate-loader'" ref="indeterminate-loader" style="position: relative;display:flex; justify-content: center;min-height:80px;">
+                            <svg el="indeterminate-loader" viewbox="0 0 66 66" style="--size:60px;">
+                                <circle fill="none" stroke-width="3" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                            </svg>
+                        </div>
+                        <!-- Tabs -->
+                        <div v-if="item.ref == 'tabs'" ref="tabs">
+                            <div el="tabs">
+                                <div @click="item.data.activetab = 1" :class="{active: item.data.activetab == 1}">Select Tab 1</div>
+                                <div @click="item.data.activetab = 2" :class="{active: item.data.activetab == 2}">Select Tab 2</div>
+                            </div>
+                            <!-- <div class="content">
+                                <div v-if="item.data.activetab == 1" el="list">
+                                    <p el>Data for tab 1</p>
+                                </div>
+                                <div v-if="item.data.activetab == 2" el="list">
+                                    <p el>Data for tab 2</p>
+                                </div>
+                            </div> -->
+                        </div>
+                        <!-- Notifications -->
+                        <div v-if="item.ref == 'toasts'" ref="toasts">
+                            <div :el="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0] : getComponentState">
+                                <div>
+                                  <i class="material-icons"></i>
+                                  <div>Lorem ipsum dolor sit amet consectetur adipiscing</div>
+                                </div>
+                                <div class="close">
+                                  <div>
+                                    <a href="#" el="link">Additional Link Text</a>
+                                  </div>
+                                  <i onclick="this.parentElement.parentElement.style.display='none';" class="material-icons" style="--control-color: black;">clear</i>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="item.ref == 'alerts'" ref="alerts">
+                            <div :el="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0] : getComponentState">
+                                <div>
+                                    <div>alert information</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="item.ref == 'status'" ref="status">
+                            <div :el="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0] : getComponentState">status</div>
+                        </div>
+                        <!-- Tooltips -->
+                        <div v-if="item.ref == 'tooltip'" ref="tooltip" style="padding:100px;">
+                            <div el="showTooltip">
+                                <div>Hover HERE!</div>
+                                <div :el="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0] : getComponentState">
+                                    <!-- <i class="material-icons">info</i> -->
+                                    <div>Tooltip</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tables -->
+                        <div v-if="item.ref == 'table'" ref="table">
+                            <table :el="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0] : getComponentState">
+                                <tr>
+                                    <th><div class="el-td-icon"><i class="material-icons">radio_button_unchecked</i>Firstname</div></th>
+                                    <th>Lastname</th>
+                                    <th>Savings</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="el-td-icon"><i class="material-icons">radio_button_unchecked</i>Peter</div>
+                                    </td>
+                                    <td>Griffin</td>
+                                    <td>$100</td>
+                                </tr>
+                                <tr class="active">
+                                    <td>
+                                        <div class="el-td-icon"><i class="material-icons">check_circle</i>Lowis</div>
+                                    </td>
+                                    <td>Griffin</td>
+                                    <td>$150</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="el-td-icon"><i class="material-icons">radio_button_unchecked</i>Joe</div>
+                                    </td>
+                                    <td>Swanson</td>
+                                    <td>$300</td>
+                                </tr>
+                                
+                              </table>
+                        </div>
+                        
+                        <!-- <div v-if="item.ref == 'template'" ref="template"></div> -->
+                    </div>
+                </div>
+
+            </div>
+            <div el="list" style="--gap:15px;padding:32px;" v-if="page == 'layouts'" class="layoutsPage">
+                    <div @click="selectComponent(item)" v-for="item in filteredComponents">
+                            <div :class="{refSelected: componentSelected == item}" style="display: inline-block;">
+                                <!-- Layouts -->
+                                <div v-if="item.ref == 'layout'" ref="layout">
+                                    <div :el="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0] : getComponentState">
+                                        <header el="header" v-if="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0].split(' ')[0].split('-')[1].search('h') >= 0 : currentComponentState.split(' ')[0].split('-')[1].search('h') >= 0"></header>
+                                        <aside el="aside" v-if="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0].split(' ')[0].split('-')[1].search('a') >= 0 : currentComponentState.split(' ')[0].split('-')[1].search('a') >= 0"></aside>
+                                        <section el="section" v-if="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0].split(' ')[0].split('-')[1].search('s') >= 0 : currentComponentState.split(' ')[0].split('-')[1].search('s') >= 0"></section>
+                                        <main el="main" v-if="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0].split(' ')[0].split('-')[1].search('m') >= 0 : currentComponentState.split(' ')[0].split('-')[1].search('m') >= 0"></main>
+                                        <footer el="footer" v-if="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0].split(' ')[0].split('-')[1].search('f') >= 0 : currentComponentState.split(' ')[0].split('-')[1].search('f') >= 0"></footer>
+                                    </div>
+                                </div>
+                                <!-- Headers -->
+                                <div v-if="item.ref == 'header'" ref="header">
+                                    <header :el="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0] : getComponentState">placeholder</header>
+                                </div>
+                                <!-- Nav -->
+                                <div v-if="item.ref == 'nav'" ref="nav">
+                                    <nav :el="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0] : getComponentState">placeholder</nav>
+                                </div>
+                                <!-- Aside -->
+                                <div v-if="item.ref == 'aside'" ref="aside">
+                                    <aside :el="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0] : getComponentState">placeholder</aside>
+                                </div>
+                                <!-- Section -->
+                                <div v-if="item.ref == 'section'" ref="section">
+                                    <section :el="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0] : getComponentState">placeholder</section>
+                                </div>
+                                <!-- Main -->
+                                <div v-if="item.ref == 'main'" ref="main">
+                                    <main :el="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0] : getComponentState">placeholder</main>
+                                </div>
+                                <!-- Footer -->
+                                <div v-if="item.ref == 'footer'" ref="footer">
+                                    <footer :el="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0] : getComponentState">placeholder</footer>
+                                </div>
+                                <!-- Containers -->
+                                <div v-if="item.ref == 'list'" ref="list" class="list-box">
+                                    <div :el="(currentComponentState == '' && Object.keys(componentSelected).length == 0) || componentSelected.ref != item.ref? item.states[0] : getComponentState">
+                                        <div>1</div>
+                                        <div>2</div>
+                                        <div>3</div>
+                                        <div>4</div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+            </div>
+            <div el="list" style="--gap:15px;padding:32px;" v-if="page == 'templates'">
+                <div v-if="menu[page].selectedSubMenu == 'blank'">
+                    <div el="list" style="--gap: 16px;">
+                        <h2 el="">Blank Template</h2>
+                        <p el="">
+                            The ACR blank template offers all of the necessary dependencies to quickly get started.
+                        </p>
+                        <div>
+                            <a href="/Assets/Template/blank.zip" el="btn" download="">
+                                <i class="material-icons">save_alt</i>
+                                download
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="page == 'documentation'" class="documentation">
+                <div v-html="githubDocumentation" v-if="menu[page].selectedSubMenu == 'github'"></div>
+                <div v-if="menu[page].selectedSubMenu == 'reports'">
+                    <div el="list">
+                        <h1>Component Progress</h1>
+                        <table el="table">
+                            <tr style="text-align: left;">
+                                <th>Component</th>
+                                <th>Status</th>
+                                <th>Type</th>
+                                <th>States</th>
+                                <th>Modifiers</th>
+                                <th>Dependencies</th>
+                                <th title="Estimated Development Time">EDT (hrs)</th>
+                                <th title="Remaining Estimated Development Time">Real EDT (hrs)</th>
+                            </tr>
+                            <tr v-for="item in orderComponentsBy">
+                                <td @click="showComponent(item)">{{item.label}}</td>
+                                <td>{{item.status}}</td>
+                                <td>{{item.type}}</td>
+                                <td>{{item.states.length}}</td>
+                                <td>{{item.modifiers.length}}</td>
+                                <td>{{item.componentDependencies.length}}</td>
+                                <td>{{getEstimatedDevTime(item)}}</td>
+                                <td>{{getRealEstimatedDevTime(item)}}</td>
+                            </tr>
+                        </table>
+                        <h4 el="">Total Development Time (EDT): {{_.ceil(getAllComponentsDevTime)}} hrs / {{_.ceil(getAllComponentsDevTime/6)}} work days</h4>
+                       <h4 el="">Real EDT: {{_.ceil(getAllRealComponentsDevTime)}} hrs / {{_.ceil(getAllRealComponentsDevTime/6)}} work days</h4>
+                        <h4 el="">Total Element States: {{countAllComponentStates.stateCount}}</h4>
+                        <h4 el="">Total Element Variations: {{countAllComponentStates.comboCount}}</h4>
+                       <h1>Terminology</h1>
+                       <h4 el="">Status</h4>
+                       <ol>
+                           <li><b>Draft</b> - Denotes a potential component where component states/modifiers/type haven't been fully determined and coding hasn't been started. This status comes prior to "In Progress" and component completion isn't guaranteed.</li>
+                            <li><b>In Progress</b> - Currently in development; Component design is subject to change and some component states may be incomplete.</li>
+                            <li><b>In Review</b> - Existing component states have been designed according to ACR's design standard model. This component is ready for review by the UI/UX Team to ensure quality and compliance.</li>
+                            <li><b>Complete</b> - Component is ready for production use and has been reviewed, documented, and tested. New component states/modifiers can still be added.</li>
+                        </ol>
+                        <h4 el="">Component Type</h4>
+                       <ul>
+                            <li><b>Base Component</b> - Component doesn't contain other components and lacks any component dependencies.</li>
+                            <li><b>Composition Component</b> - Component states contain other components or have component dependencies in order to exist.</li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div v-if="menu[page].selectedSubMenu == 'guidlines'">
+                    <div el="list">
+                        <h1>Guidlines</h1>
+                        <h3 el="">Shapes / Shadows</h3>
+                        <div el="list-column">
+                            <div el="shadow-lg" class="box">shadow-lg</div>
+                            <div el="shadow" class="box">shadow</div>
+                            <div el="shadow-sm" class="box">shadow-sm</div>
+                        </div>
+                        <h3 el="">Shapes / Radius</h3>
+                        <div el="list-column">
+                            <div el="rnd3" class="box-outline">rnd3</div>
+                            <div el="rnd" class="box-outline">rnd</div>
+                            <div el="rnd100" class="box-outline">rnd100</div>
+                        </div>
+
+                        <h3 el="">Colors</h3>
+                        <div el="list-column">
+                            <p el="">Colors should be used according to the following usecases:</p>
+                        </div>
+                        <div el="list" style="--gap:8px;">
+                                <div el="list-column">
+                                    <p el="bold">Text</p>
+                                    <div el="list-column" style="--gap:4px;">
+                                        <div el="showTooltip">
+                                            <div el="box" class="color-box" style="--bg-color:var(--color-black);"></div>
+                                            <div el="tooltip-top">black</div>
+                                        </div>
+                                        <div el="showTooltip">
+                                            <div el="box" class="color-box" style="--bg-color:var(--color-80);"></div>
+                                            <div el="tooltip-top">80</div>
+                                        </div>
+                                        <div el="showTooltip">
+                                            <div el="box" class="color-box" style="--bg-color:var(--color-65);"></div>
+                                            <div el="tooltip-top">65</div>
+                                        </div>
+                                        <div el="showTooltip">
+                                            <div el="box" class="color-box" style="--bg-color:var(--color-ocean);"></div>
+                                            <div el="tooltip-top">ocean</div>
+                                        </div>
+                                        <div el="showTooltip">
+                                            <div el="box" class="color-box" style="--bg-color:var(--color-sea);"></div>
+                                            <div el="tooltip-top">sea</div>
+                                        </div>
+                                        <div el="showTooltip">
+                                            <div el="box" class="color-box" style="--bg-color:var(--color-sky);"></div>
+                                            <div el="tooltip-top">sky</div>
+                                        </div>
+                                        <div el="showTooltip">
+                                            <div el="box" class="color-box" style="--bg-color:var(--color-mist);"></div>
+                                            <div el="tooltip-top">mist</div>
+                                        </div>
+                                        
+                                        <div el="showTooltip">
+                                            <div el="box" class="color-box" style="--bg-color:var(--color-storm);"></div>
+                                            <div el="tooltip-top">storm</div>
+                                        </div>
+                                        <div el="showTooltip">
+                                            <div el="box" class="color-box" style="--bg-color:var(--color-earth);"></div>
+                                            <div el="tooltip-top">earth</div>
+                                        </div>
+                                        <div el="showTooltip">
+                                            <div el="box" class="color-box" style="--bg-color:var(--color-dusk);"></div>
+                                            <div el="tooltip-top">dusk</div>
+                                        </div>
+                                        <div el="showTooltip">
+                                            <div el="box" class="color-box" style="--bg-color:var(--color-aurora);"></div>
+                                            <div el="tooltip-top">aurora</div>
+                                        </div>
+                                       
+                                        
+                                    </div>
+                                </div>
+                                <div el="list-column">
+                                    <p el="bold">Section Backgrounds</p>
+                                    <div el="list-column" style="--gap:4px;">
+                                        <div el="showTooltip">
+                                            <div el="box" class="color-box" style="--bg-color:var(--color-white);"></div>
+                                            <div el="tooltip-top">white</div>
+                                        </div>
+                                        <div el="showTooltip">
+                                            <div el="box" class="color-box" style="--bg-color:var(--color-3);"></div>
+                                            <div el="tooltip-top">3</div>
+                                        </div>
+                                        <div el="showTooltip">
+                                            <div el="box" class="color-box" style="--bg-color:var(--color-7);"></div>
+                                            <div el="tooltip-top">7</div>
+                                        </div>
+                                        <div el="showTooltip">
+                                            <div el="box" class="color-box" style="--bg-color:var(--color-earth-3);"></div>
+                                            <div el="tooltip-top">earth-3</div>
+                                        </div>
+                                        <div el="showTooltip">
+                                            <div el="box" class="color-box" style="--bg-color:var(--color-dusk-3);"></div>
+                                            <div el="tooltip-top">dusk-3</div>
+                                        </div>
+                                        <div el="showTooltip">
+                                            <div el="box" class="color-box" style="--bg-color:var(--color-sky-3);"></div>
+                                            <div el="tooltip-top">sky-3</div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+
+                                <div el="list-column">
+                                    <p el="bold">Layout Backgrounds</p>
+                                    <div el="list-column" style="--gap:4px;">
+                                        <div el="showTooltip">
+                                            <div el="box" class="color-box" style="--bg-color:var(--color-white);"></div>
+                                            <div el="tooltip-top">white</div>
+                                        </div>
+                                        <div el="showTooltip">
+                                            <div el="box" class="color-box" style="--bg-color:var(--color-7);"></div>
+                                            <div el="tooltip-top">7</div>
+                                        </div>
+                                        <div el="showTooltip">
+                                            <div el="box" class="color-box" style="--bg-color:var(--color-ocean);"></div>
+                                            <div el="tooltip-top">ocean</div>
+                                        </div>
+                                        <div el="showTooltip">
+                                            <div el="box" class="color-box" style="--bg-color:var(--color-sea);"></div>
+                                            <div el="tooltip-top">sea</div>
+                                        </div>
+                                        <div el="showTooltip">
+                                            <div el="box" class="color-box" style="--bg-color:var(--color-mist);"></div>
+                                            <div el="tooltip-top">mist</div>
+                                        </div>
+                                        <div el="showTooltip">
+                                            <div el="box" class="color-box" style="--bg-color:var(--color-cloud);"></div>
+                                            <div el="tooltip-top">cloud</div>
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                </div>
+
+                            </div>
+                        <h3 el="">Button</h3>
+                        <ul style="margin:0;">
+                            <li><p el="">Button text should not contain more than two words.</p></li>
+                            <li><p el="">Buttons with icons must use a "div" or "a" tag since there is a bug in Chrome and Safari that doesn't allow CSS grid applied to the "button" html tag.</p></li>
+                        </ul>
+                        
+                        <h3 el="">Form / Input</h3>
+                        <ul style="margin:0;">
+                            <li><p el="">If input only requires a number, prevent non-numerical input data.</p></li>
+                        </ul>
+
+                        <h3 el="">Data / Table</h3>
+                        <ul style="margin:0;">
+                            <li><p el="">Right align all table cells that contain numerical data.</p></li>
+                            <li>
+                                <p el="">Always <b>use a virtual list for large lists</b> of rendered data to increase performance.</p>
+                                <a href="https://web.dev/virtualize-lists-with-angular-cdk/" el="link" rel="noreferrer noopener" target="_blank">https://web.dev/virtualize-lists-with-angular-cdk/</a>
+                            </li>
+                        </ul>
+                        <h3 el="">Data / Table / Filters</h3>
+                        <ul style="margin:0;">
+                            <li>
+                                <p el=""><b>Pagination, filters, and sorting should be performed server-side</b> for performance, consistantancy, maintainability, and to avoid browser specific implementations.</p>
+                            </li>
+                        </ul>
+                        <h3 el="">Application / Page Routing</h3>
+                        <ul style="margin:0;">
+                            <li>
+                                <p el="">Always <b>implement route-level code splitting</b> when using a front-end framework such as Angular. Route-level code splitting dynamically loads pages when they're requested which reduces load time and bundle size.</p>
+                                <a href="https://web.dev/route-level-code-splitting-in-angular/" el="link" rel="noreferrer noopener" target="_blank">https://web.dev/route-level-code-splitting-in-angular/</a>
+                            </li>
+                        </ul>
+                        <h3 el="">Application / CSS</h3>
+                        <ul style="margin:0;">
+                            <li>
+                                <p el="">Always <b>defer non-critical CSS</b>. Allow non-critical CSS to load in the background to reduce inital load time.</p>
+                                <a href="https://web.dev/defer-non-critical-css/" el="link" rel="noreferrer noopener" target="_blank">https://web.dev/defer-non-critical-css/</a>
+                            </li>
+                        </ul>
+                        <h3 el="">Application / Separation</h3>
+                        <ul style="margin:0;">
+                            <li>
+                                <p el="">Always <b>avoid mixing server-side code into application font-end</b>. This will allow future maintainability and cloud implementation/movement signifcantly simpler. In addition, it will lower cost since your application can easily become serverless with pay-as-you-go pricing.</p>
+                            </li>
+                        </ul>
+                        <h3 el="">Application / Performance Audit</h3>
+                        <ul style="margin:0;">
+                            <li>
+                                <p el="">Always <b>performance test your application</b> using lighthouse.</p>
+                                <a href="https://web.dev/measure/" el="link" rel="noreferrer noopener" target="_blank">https://web.dev/measure/</a>
+                            </li>
+                            <ul>
+                                <li>
+                                    <p el="">Time to Interactive performance metric must be under 5s</p>
+                                </li>
+                                <li>
+                                    <p el="">Under 170 KB of critical-path resources (compressed/minified)</p>
+                                </li>
+                                <li>
+                                    <p el="">Page must load and get interactive in < 5s on slow 4G connection</p>
+                                </li>
+                                <li>
+                                    <p el="">CSS fonts must have "font-display:swap;" to prevent render blocking</p>
+                                </li>
+                                <li>
+                                    <p el="">Resize and lazy-load images based on screen size for added performance and render times.</p>
+                                </li>
+                            </ul>
+                        </ul>
+                        <h3 el="">Application / Exports</h3>
+                        <ul style="margin:0;">
+                            <li>
+                                <p el="">Always <b>process exports on seperate thread</b> using a web worker to run in the background without blocking the main thread. This will allow the user to continue using the application while avoiding a slugish UI.</p>
+                                
+                            </li>
+                            <ul>
+                                <li>
+                                    <p el="">Example (set "worker: true") for exporting/processing CSV files: <a href="https://www.papaparse.com/" el="link" rel="noreferrer noopener" target="_blank">https://www.papaparse.com/</a></p>
+                                </li>
+                            </ul>
+                        </ul>
+                        <h3 el="">Server Configuration</h3>
+                        <ul style="margin:0;">
+                            <li>
+                                <p el="">Use <b>GZIP or BROTLI text compression</b> when serving your application to reduce file size, load time, and server response times.</p>
+                                
+                            </li>
+                            <li>
+                                <p el=""><b>Enable HTTP/2</b> to increase the speed of requested resources.</p>
+                            </li>
+                            <li>
+                                <p el="">Always <b>redirect HTTP to HTTPS</b>.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <textarea ref="copyText" v-show="false"></textarea>
+        <transition name="fade">
+            <div el="module-fit-right" v-if="showDocumentation" @click.stop="closeDocumentation" style="--bg-color:transparent;">
+                <div el="list" style="--gap:var(--space-sm);" @click.stop="">
+                    <div class="title-icon">
+                        <div el="list-column" style="align-items:center;">
+                            <h3 style="text-transform: capitalize;" :title="componentSelected.status + ' (Estimated Dev - '+getComponentDevTime+' hrs)'" el="">{{componentSelected.label}}</h3>
+                            <!-- <i v-if="componentSelected.status == 'draft'" :title="componentSelected.status + ' (Estimated Dev - '+getComponentDevTime+' hrs)'" class="material-icons">edit</i>
+                            <i v-if="componentSelected.status == 'in progress'" :title="componentSelected.status + ' (Estimated Dev - '+getComponentDevTime+' hrs)'" class="material-icons">build</i>
+                            <i v-if="componentSelected.status == 'in review'" title="Waiting for review" class="material-icons">visibility</i>
+                            <i v-if="componentSelected.status == 'complete'" title="Ready for Production!" class="material-icons color-green">check</i> -->
+
+                            <div el="status-success" v-if="componentSelected.status == 'complete'" :title="'Estimated Dev - '+getComponentDevTime+' hrs'">{{componentSelected.status}}</div>
+                            <div el="status-info" v-else-if="componentSelected.status == 'in review'" :title="'Estimated Dev - '+getComponentDevTime+' hrs'">{{componentSelected.status}}</div>
+                            <div el="status-warning" v-else-if="componentSelected.status == 'in progress'" :title="'Estimated Dev - '+getComponentDevTime+' hrs'">{{componentSelected.status}}</div>
+                            <div el="status-warning" v-else-if="componentSelected.status == 'draft'" :title="'Estimated Dev - '+getComponentDevTime+' hrs'">{{componentSelected.status}}</div>
+                            
+                        </div>
+
+                        <span @click.stop="closeDocumentation"><i class="material-icons">close</i></span>
+                    </div>
+                    <div class="codeContainer" el="list" style="--gap:0px;">
+                        <div el="list-column-between">
+                            <h5 el="" style="user-select: none;">HTML</h5>
+                            <span class="material-icons copyToClipboard" @click="copyToClipboard('code')">content_copy</span>
+                        </div>
+                        <pre><code ref="code" id="code">{{code.html.value}}</code></pre>
+                    </div>
+                    <div el="list">
+                        <h4 el="">Element States</h4>
+                        <div class="elementStates">
+                            <div v-for="item in componentSelected.states" @click="currentComponentState = item" :class="{selectElementState: currentComponentState == item}">{{item}}</div>
+                        </div>
+                    </div>
+                    <div el="list" v-if="componentSelected.modifiers.length > 0">
+                        <h4 el="">Element Modifiers</h4>
+                        <div class="elementStates">
+                            <div v-for="item in componentSelected.modifiers" @click="toggleComponentModifier(item)" :class="{selectElementState: selectedComponentModifiers[item] == true}">{{item}}</div>
+                        </div>
+                    </div>
+                    <div el="list">
+                        <h4 el="">Supported HTML Tags</h4>
+                        <!-- <div>{{refSelectedStates[refSelected].supportedTags.join(', ')}}</div> -->
+                        <p el="">{{componentSelected.supportedTags.join(', ')}}</p>
+                    </div>
+                    <div el="list">
+                        <h4 el="">Minimum Browser Support</h4>
+                        <p el="">{{minBrowserSupport.join(', ')}}</p>
+                    </div>
+                </div>
+            </div>
+        </transition>
+
+    </div>
+</template>
+<!-- production version, optimized for size and speed -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
+    <!-- ACR Standard Verification Library (DEVELOPMENT ONLY) -->
+    <!-- <script src="Assets/JS/verify.js" defer></script> -->
+    <script>// modules are defined as an array
+// [ module function, map of requires ]
+//
+// map of requires is short require name -> numeric require
+//
+// anything defined in a previous bundle is accessed via the
+// orig method which is the require for previous bundles
+
+(function(modules, cache, entry, mainEntry, globalName) {
+  /* eslint-disable no-undef */
+  var globalObject =
+    typeof globalThis !== 'undefined'
+      ? globalThis
+      : typeof self !== 'undefined'
+      ? self
+      : typeof window !== 'undefined'
+      ? window
+      : typeof global !== 'undefined'
+      ? global
+      : {};
+  /* eslint-enable no-undef */
+
+  // Save the require from previous bundle to this closure if any
+  var previousRequire =
+    typeof globalObject.parcelRequire === 'function' &&
+    globalObject.parcelRequire;
+  // Do not use `require` to prevent Webpack from trying to bundle this call
+  var nodeRequire =
+    typeof module !== 'undefined' &&
+    typeof module.require === 'function' &&
+    module.require.bind(module);
+
+  function newRequire(name, jumped) {
+    if (!cache[name]) {
+      if (!modules[name]) {
+        // if we cannot find the module within our internal map or
+        // cache jump to the current global require ie. the last bundle
+        // that was added to the page.
+        var currentRequire =
+          typeof parcelRequire === 'function' && parcelRequire;
+        if (!jumped && currentRequire) {
+          return currentRequire(name, true);
+        }
+
+        // If there are other bundles on this page the require from the
+        // previous one is saved to 'previousRequire'. Repeat this as
+        // many times as there are bundles until the module is found or
+        // we exhaust the require chain.
+        if (previousRequire) {
+          return previousRequire(name, true);
+        }
+
+        // Try the node require function if it exists.
+        if (nodeRequire && typeof name === 'string') {
+          return nodeRequire(name);
+        }
+
+        var err = new Error("Cannot find module '" + name + "'");
+        err.code = 'MODULE_NOT_FOUND';
+        throw err;
+      }
+
+      localRequire.resolve = resolve;
+      localRequire.cache = {};
+
+      var module = (cache[name] = new newRequire.Module(name));
+
+      modules[name][0].call(
+        module.exports,
+        localRequire,
+        module,
+        module.exports,
+        this
+      );
+    }
+
+    return cache[name].exports;
+
+    function localRequire(x) {
+      return newRequire(localRequire.resolve(x));
+    }
+
+    function resolve(x) {
+      return modules[name][1][x] || x;
+    }
+  }
+
+  function Module(moduleName) {
+    this.id = moduleName;
+    this.bundle = newRequire;
+    this.exports = {};
+  }
+
+  newRequire.isParcelRequire = true;
+  newRequire.Module = Module;
+  newRequire.modules = modules;
+  newRequire.cache = cache;
+  newRequire.parent = previousRequire;
+  newRequire.register = function(id, exports) {
+    modules[id] = [
+      function(require, module) {
+        module.exports = exports;
+      },
+      {},
+    ];
+  };
+
+  globalObject.parcelRequire = newRequire;
+
+  for (var i = 0; i < entry.length; i++) {
+    newRequire(entry[i]);
+  }
+
+  if (mainEntry) {
+    // Expose entry point to Node, AMD or browser globals
+    // Based on https://github.com/ForbesLindesay/umd/blob/master/template.js
+    var mainExports = newRequire(mainEntry);
+
+    // CommonJS
+    if (typeof exports === 'object' && typeof module !== 'undefined') {
+      module.exports = mainExports;
+
+      // RequireJS
+    } else if (typeof define === 'function' && define.amd) {
+      define(function() {
+        return mainExports;
+      });
+
+      // <script>
+    } else if (globalName) {
+      this[globalName] = mainExports;
+    }
+  }
+})({"f32yD":[function(require,module,exports) {
+var global = arguments[3];
+var HMR_HOST = null;
+var HMR_PORT = 1234;
+var HMR_ENV_HASH = "d751713988987e9331980363e24189ce";
+module.bundle.HMR_BUNDLE_ID = "15c77cca1845af4176bb2a777fabb545";
+/* global HMR_HOST, HMR_PORT, HMR_ENV_HASH */
+
+var OVERLAY_ID = '__parcel__error__overlay__';
+var OldModule = module.bundle.Module;
+
+function Module(moduleName) {
+  OldModule.call(this, moduleName);
+  this.hot = {
+    data: module.bundle.hotData,
+    _acceptCallbacks: [],
+    _disposeCallbacks: [],
+    accept: function (fn) {
+      this._acceptCallbacks.push(fn || function () {});
+    },
+    dispose: function (fn) {
+      this._disposeCallbacks.push(fn);
+    }
+  };
+  module.bundle.hotData = null;
+}
+
+module.bundle.Module = Module;
+var checkedAssets, assetsToAccept, acceptedAssets;
+
+function getHostname() {
+  return HMR_HOST || (location.protocol.indexOf('http') === 0 ? location.hostname : 'localhost');
+}
+
+function getPort() {
+  return HMR_PORT || location.port;
+} // eslint-disable-next-line no-redeclare
+
+
+var parent = module.bundle.parent;
+
+if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
+  var hostname = getHostname();
+  var port = getPort();
+  var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+  var ws = new WebSocket(protocol + '://' + hostname + (port ? ':' + port : '') + '/');
+
+  ws.onmessage = function (event) {
+    checkedAssets = {};
+    assetsToAccept = [];
+    acceptedAssets = {};
+    var data = JSON.parse(event.data);
+
+    if (data.type === 'update') {
+      // Remove error overlay if there is one
+      removeErrorOverlay();
+      let assets = data.assets.filter(asset => asset.envHash === HMR_ENV_HASH); // Handle HMR Update
+
+      var handled = false;
+      assets.forEach(asset => {
+        var didAccept = asset.type === 'css' || hmrAcceptCheck(global.parcelRequire, asset.id);
+
+        if (didAccept) {
+          handled = true;
+        }
+      });
+
+      if (handled) {
+        console.clear();
+        assets.forEach(function (asset) {
+          hmrApply(global.parcelRequire, asset);
+        });
+
+        for (var i = 0; i < assetsToAccept.length; i++) {
+          var id = assetsToAccept[i][1];
+
+          if (!acceptedAssets[id]) {
+            hmrAcceptRun(assetsToAccept[i][0], id);
+          }
+        }
+      } else {
+        window.location.reload();
+      }
+    }
+
+    if (data.type === 'error') {
+      // Log parcel errors to console
+      for (let ansiDiagnostic of data.diagnostics.ansi) {
+        let stack = ansiDiagnostic.codeframe ? ansiDiagnostic.codeframe : ansiDiagnostic.stack;
+        console.error('🚨 [parcel]: ' + ansiDiagnostic.message + '\n' + stack + '\n\n' + ansiDiagnostic.hints.join('\n'));
+      } // Render the fancy html overlay
+
+
+      removeErrorOverlay();
+      var overlay = createErrorOverlay(data.diagnostics.html);
+      document.body.appendChild(overlay);
+    }
+  };
+
+  ws.onerror = function (e) {
+    console.error(e.message);
+  };
+
+  ws.onclose = function (e) {
+    console.warn('[parcel] 🚨 Connection to the HMR server was lost');
+  };
+}
+
+function removeErrorOverlay() {
+  var overlay = document.getElementById(OVERLAY_ID);
+
+  if (overlay) {
+    overlay.remove();
+    console.log('[parcel] ✨ Error resolved');
+  }
+}
+
+function createErrorOverlay(diagnostics) {
+  var overlay = document.createElement('div');
+  overlay.id = OVERLAY_ID;
+  let errorHTML = '<div style="background: black; opacity: 0.85; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; font-family: Menlo, Consolas, monospace; z-index: 9999;">';
+
+  for (let diagnostic of diagnostics) {
+    let stack = diagnostic.codeframe ? diagnostic.codeframe : diagnostic.stack;
+    errorHTML += `
+      <div>
+        <div style="font-size: 18px; font-weight: bold; margin-top: 20px;">
+          🚨 ${diagnostic.message}
+        </div>
+        <pre>
+          ${stack}
+        </pre>
+        <div>
+          ${diagnostic.hints.map(hint => '<div>' + hint + '</div>').join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  errorHTML += '</div>';
+  overlay.innerHTML = errorHTML;
+  return overlay;
+}
+
+function getParents(bundle, id) {
+  var modules = bundle.modules;
+
+  if (!modules) {
+    return [];
+  }
+
+  var parents = [];
+  var k, d, dep;
+
+  for (k in modules) {
+    for (d in modules[k][1]) {
+      dep = modules[k][1][d];
+
+      if (dep === id || Array.isArray(dep) && dep[dep.length - 1] === id) {
+        parents.push([bundle, k]);
+      }
+    }
+  }
+
+  if (bundle.parent) {
+    parents = parents.concat(getParents(bundle.parent, id));
+  }
+
+  return parents;
+}
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    if (link.parentNode !== null) {
+      link.parentNode.removeChild(link);
+    }
+  };
+
+  newLink.setAttribute('href', link.getAttribute('href').split('?')[0] + '?' + Date.now());
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      var href = links[i].getAttribute('href');
+      var hostname = getHostname();
+      var servedFromHMRServer = hostname === 'localhost' ? new RegExp('^(https?:\\/\\/(0.0.0.0|127.0.0.1)|localhost):' + getPort()).test(href) : href.indexOf(hostname + ':' + getPort());
+      var absolute = /^https?:\/\//i.test(href) && href.indexOf(window.location.origin) !== 0 && !servedFromHMRServer;
+
+      if (!absolute) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+function hmrApply(bundle, asset) {
+  var modules = bundle.modules;
+
+  if (!modules) {
+    return;
+  }
+
+  if (modules[asset.id] || !bundle.parent) {
+    if (asset.type === 'css') {
+      reloadCSS();
+    } else {
+      var fn = new Function('require', 'module', 'exports', asset.output);
+      modules[asset.id] = [fn, asset.depsByBundle[bundle.HMR_BUNDLE_ID]];
+    }
+  } else if (bundle.parent) {
+    hmrApply(bundle.parent, asset);
+  }
+}
+
+function hmrAcceptCheck(bundle, id) {
+  var modules = bundle.modules;
+
+  if (!modules) {
+    return;
+  }
+
+  if (!modules[id] && bundle.parent) {
+    return hmrAcceptCheck(bundle.parent, id);
+  }
+
+  if (checkedAssets[id]) {
+    return;
+  }
+
+  checkedAssets[id] = true;
+  var cached = bundle.cache[id];
+  assetsToAccept.push([bundle, id]);
+
+  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
+    return true;
+  }
+
+  return getParents(global.parcelRequire, id).some(function (v) {
+    return hmrAcceptCheck(v[0], v[1]);
+  });
+}
+
+function hmrAcceptRun(bundle, id) {
+  var cached = bundle.cache[id];
+  bundle.hotData = {};
+
+  if (cached && cached.hot) {
+    cached.hot.data = bundle.hotData;
+  }
+
+  if (cached && cached.hot && cached.hot._disposeCallbacks.length) {
+    cached.hot._disposeCallbacks.forEach(function (cb) {
+      cb(bundle.hotData);
+    });
+  }
+
+  delete bundle.cache[id];
+  bundle(id);
+  cached = bundle.cache[id];
+
+  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
+    cached.hot._acceptCallbacks.forEach(function (cb) {
+      var assetsToAlsoAccept = cb(function () {
+        return getParents(global.parcelRequire, id);
+      });
+
+      if (assetsToAlsoAccept && assetsToAccept.length) {
+        assetsToAccept.push.apply(assetsToAccept, assetsToAlsoAccept);
+      }
+    });
+  }
+
+  acceptedAssets[id] = true;
+}
+},{}],"7Lsq5":[function(require,module,exports) {
+
+},{}]},{},["f32yD","7Lsq5"], "7Lsq5", null)
+
+</script>
+    
+</body>
+
+</html>

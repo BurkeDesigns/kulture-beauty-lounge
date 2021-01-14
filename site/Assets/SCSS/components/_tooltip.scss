@@ -1,0 +1,94 @@
+/*----- Tooltips -----*/
+[#{$attr}~=tooltip],
+[#{$attr}|=tooltip] {
+    --height: 35px;
+    --width: inherit;
+    --display: none;
+    --padding: 5px 15px;
+    --border-radius: 3px;
+    --control-bg-color: aliceblue;
+
+    --bg-color: aliceblue;
+    --hover-bg-color: aliceblue;
+    --pressed-bg-color: aliceblue;
+
+    --color: var(--color-sky);
+
+    min-width:max-content;
+    max-width:300px;
+    align-items: center;
+    position: absolute;
+    z-index: 9;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform:translateX(-50%);
+    grid-auto-flow:column;
+    grid-gap:5px;
+    white-space: nowrap;
+    box-shadow: 0px 0px 0px 0.5px #fff;
+    filter: drop-shadow(0 0px 1px #0068ff) drop-shadow(0 3px 6px rgba(0, 0, 0, 0.06)) drop-shadow(0 3px 6px rgba(0, 0, 0, 0.13));
+}
+
+[#{$attr}|=tooltip]{
+    &[#{$attr}*=top]{
+        top: 0;
+        transform: translateX(-50%) translateY(calc(-100% - 10px));
+    }
+    &[#{$attr}*=right]{
+        left: calc(100% + 10px);
+        transform: translateY(-50%);
+        top: 50%;
+    }
+    &[#{$attr}*=left]{
+        left: 0;
+        transform: translateY(-50%) translateX(calc(-100% - 10px));
+        top: 50%;
+    }
+}
+
+[#{$attr}~=tooltip]::after,
+[#{$attr}|=tooltip]::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent aliceblue transparent;
+}
+[#{$attr}|=tooltip]{
+    &[#{$attr}*=right]::after{
+        top: 50%;
+        left: 0;
+        bottom:unset;
+        transform: translateY(-50%) translateX(-100%);
+        border-color: transparent aliceblue transparent transparent;
+    }
+    &[#{$attr}*=left]::after{
+        top: 50%;
+        left: 100%;
+        bottom:unset;
+        transform: translateY(-50%);
+        border-color: transparent transparent transparent aliceblue;
+    }
+    &[#{$attr}*=top]::after{
+        top: 50%;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%) translateY(100%);
+        border-color: aliceblue transparent transparent transparent;
+    }
+}
+
+[#{$attr}*=showTooltip]:hover [#{$attr}~=tooltip],
+[#{$attr}*=showTooltip]:hover [#{$attr}|=tooltip]
+/* [#{$attr}~="tooltip"]:hover,
+[#{$attr}|="tooltip"]:hover */
+{
+    --display: inline-grid;
+}
+[#{$attr}~=tooltip]:hover,
+[#{$attr}|=tooltip]:hover{
+    display: none;
+}
+  
